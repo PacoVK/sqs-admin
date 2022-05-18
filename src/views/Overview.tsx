@@ -29,8 +29,6 @@ import Alert from "../components/Alert";
 import useInterval from "../hooks/useInterval";
 import SendMessageDialog from "../components/SendMessageDialog";
 
-const { REACT_APP_AWS_REGION: AWS_REGION } = process.env;
-
 const a11yProps = (id: string, index: number) => {
   return {
     key: `queue-${id}-${index}`,
@@ -174,7 +172,7 @@ const Overview = () => {
         <Container maxWidth="md">
           <MuiAlert severity="info">
             <AlertTitle>No Queue</AlertTitle>
-            No Queues exist in region {AWS_REGION}
+            No Queues exist in region eu
           </MuiAlert>
         </Container>
       ) : (

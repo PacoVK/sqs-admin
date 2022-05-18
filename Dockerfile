@@ -13,8 +13,10 @@ WORKDIR /usr/src/app
 RUN yarn global add serve
 
 COPY --from=BUILD_IMAGE /usr/src/app/build ./build
-COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
 
-EXPOSE 5000
+RUN yarn install --production \
+    && yarn autoclean --force
+
+EXPOSE 3000
 
 CMD ["serve", "-s", "build"]

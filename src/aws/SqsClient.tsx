@@ -10,20 +10,13 @@ import {
 } from "@aws-sdk/client-sqs";
 import { SqsMessage } from "../types";
 
-const {
-  REACT_APP_AWS_REGION: AWS_REGION,
-  REACT_APP_AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID,
-  REACT_APP_AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY,
-  REACT_APP_SQS_ENDPOINT: SQS_ENDPOINT,
-} = process.env;
-
 const sqsClient = new SQSClient({
-  region: AWS_REGION || "eu-central-1",
-  endpoint: SQS_ENDPOINT || "http://localhost:4566",
-  tls: (SQS_ENDPOINT && SQS_ENDPOINT.indexOf("https://") === 0) || false,
+  region: "eu-central-1",
+  endpoint: "http://localhost:4566",
+  tls: false,
   credentials: {
-    accessKeyId: AWS_ACCESS_KEY_ID || "key",
-    secretAccessKey: AWS_SECRET_ACCESS_KEY || "secret",
+    accessKeyId: "key",
+    secretAccessKey: "secret",
   },
 });
 
