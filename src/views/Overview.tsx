@@ -12,11 +12,7 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import {
-  deleteQueue,
-  purgeQueue,
-  sendMessage,
-} from "../aws/SqsClient";
+import { deleteQueue, purgeQueue, sendMessage } from "../aws/SqsClient";
 import { Queue, SqsMessage } from "../types";
 import { Message } from "@aws-sdk/client-sqs";
 import MessageItem from "../components/MessageItem";
@@ -52,16 +48,19 @@ const Overview = () => {
     fetch("http://localhost:3999/sqs", {
       method: "GET",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then((result) => {
-      return result.json()
-    }).then(data => {
-      setQueues(data)
-    }).catch((error) => {
-      setError(error.message);
-    });
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((result) => {
+        return result.json();
+      })
+      .then((data) => {
+        setQueues(data);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   }, [reload]);
 
   const handleChange = async (
@@ -77,39 +76,45 @@ const Overview = () => {
       fetch("http://localhost:3999/sqs", {
         method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           action: "GetMessages",
-          queue: queues[tabIndex]
+          queue: queues[tabIndex],
+        }),
+      })
+        .then((result) => {
+          return result.json();
         })
-      }).then((result) => {
-        return result.json()
-      }).then(data => {
-        setMessages(data);
-      }).catch((error) => {
-        setError(error.message);
-      });
-      }
+        .then((data) => {
+          setMessages(data);
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    }
   };
 
   const createNewQueue = async (queueName: string) => {
     fetch("http://localhost:3999/sqs", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         action: "CreateQueue",
         queue: {
-          QueueName: queueName
-        }
+          QueueName: queueName,
+        },
+      }),
+    })
+      .then(() => {
+        setTimeout(() => {
+          triggerReload(!reload);
+        }, 1000);
       })
-    }).then(() => {
-      setTimeout(() => {
-        triggerReload(!reload);
-      }, 1000)}).catch((error) => {
+      .catch((error) => {
         setError(error.message);
       });
   };
@@ -207,14 +212,14 @@ const Overview = () => {
             >
               <Grid container spacing={2}>
                 {messages.map((message, index) => (
-                    <Grid item xs={12} {...a11yProps("gridItem", index)}>
-                      <Paper>
-                        <MessageItem
-                            data={message}
-                            {...a11yProps("messageItem", index)}
-                        />
-                      </Paper>
-                    </Grid>
+                  <Grid item xs={12} {...a11yProps("gridItem", index)}>
+                    <Paper>
+                      <MessageItem
+                        data={message}
+                        {...a11yProps("messageItem", index)}
+                      />
+                    </Paper>
+                  </Grid>
                 ))}
               </Grid>
             </TabPanel>

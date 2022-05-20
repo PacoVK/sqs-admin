@@ -12,7 +12,7 @@ const liveServer = require("live-server");
   });
   chokidar
     .watch("src/**/*.{ts,tsx}", {
-      interval: 0
+      interval: 0,
     })
     .on("all", () => {
       builder.rebuild();

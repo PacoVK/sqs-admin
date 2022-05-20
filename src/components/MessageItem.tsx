@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 
 const toLocaleString = (epochTimeStamp: string) => {
   return new Date(parseInt(epochTimeStamp)).toLocaleString();
-}
+};
 // @ts-ignore
 const MessageItem = (props) => {
   return (
@@ -11,11 +11,11 @@ const MessageItem = (props) => {
       <Card>
         <CardHeader
           title={`MessageId: ${props.data.messageId}`}
-          subheader={`Sent on: ${
-            toLocaleString(props.data.messageAttributes.SentTimestamp)
-          }, Received at: ${
-            toLocaleString(props.data.messageAttributes.ApproximateFirstReceiveTimestamp)
-          }`}
+          subheader={`Sent on: ${toLocaleString(
+            props.data.messageAttributes.SentTimestamp
+          )}, Received at: ${toLocaleString(
+            props.data.messageAttributes.ApproximateFirstReceiveTimestamp
+          )}`}
         />
         <CardContent>
           <Typography component={"span"} variant="body2">
