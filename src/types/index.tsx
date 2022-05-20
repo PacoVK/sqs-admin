@@ -22,7 +22,7 @@ export interface AlertProps {
 }
 
 export interface Queue {
-  Attributes: { [key: string]: string } | undefined;
+  QueueAttributes: { [key: string]: string } | undefined;
   QueueUrl: string;
   QueueName: string;
 }

@@ -13,12 +13,8 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  createQueue,
   deleteQueue,
-  fetchQueues,
-  getQueueAttribute,
   purgeQueue,
-  receiveMessage,
   sendMessage,
 } from "../aws/SqsClient";
 import { Queue, SqsMessage } from "../types";
@@ -39,13 +35,13 @@ const a11yProps = (id: string, index: number) => {
 const Overview = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [queues, setQueues] = useState([] as Queue[]);
-  const [messages, setMessages] = useState([] as Message[]);
+  const [messages, setMessages] = useState([]);
   const [reload, triggerReload] = useState(true);
   const [error, setError] = useState("");
 
   useInterval(async () => {
     await receiveMessageFromCurrentQueue();
-  }, 2000);
+  }, 3000);
 
   useEffect(() => {
     receiveMessageFromCurrentQueue();
@@ -53,26 +49,19 @@ const Overview = () => {
   }, [queues, tabIndex]);
 
   useEffect(() => {
-    fetchQueues()
-      .then((result) => {
-        const { QueueUrls = [] } = result;
-        const promises = QueueUrls.map((QueueUrl) => {
-          return getQueueAttribute(QueueUrl).then(({ Attributes }) => {
-            const arnParts = Attributes?.QueueArn.split(":") || [];
-            return {
-              Attributes,
-              QueueUrl,
-              QueueName: arnParts[arnParts.length - 1],
-            };
-          });
-        });
-        Promise.all(promises).then((res) => {
-          setQueues(res);
-        });
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+    fetch("http://localhost:3999/sqs", {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((result) => {
+      return result.json()
+    }).then(data => {
+      setQueues(data)
+    }).catch((error) => {
+      setError(error.message);
+    });
   }, [reload]);
 
   const handleChange = async (
@@ -83,22 +72,44 @@ const Overview = () => {
   };
 
   const receiveMessageFromCurrentQueue = async () => {
-    var queueUrl = queues[tabIndex]?.QueueUrl || null;
+    let queueUrl = queues[tabIndex]?.QueueUrl || null;
     if (queueUrl != null) {
-      receiveMessage(queueUrl).then((result) => {
-        setMessages(result.Messages || []);
+      fetch("http://localhost:3999/sqs", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          action: "GetMessages",
+          queue: queues[tabIndex]
+        })
+      }).then((result) => {
+        return result.json()
+      }).then(data => {
+        setMessages(data);
+      }).catch((error) => {
+        setError(error.message);
       });
-    }
+      }
   };
 
   const createNewQueue = async (queueName: string) => {
-    createQueue(queueName)
-      .then(() => {
-        setTimeout(() => {
-          triggerReload(!reload);
-        }, 1000);
+    fetch("http://localhost:3999/sqs", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        action: "CreateQueue",
+        queue: {
+          QueueName: queueName
+        }
       })
-      .catch((error) => {
+    }).then(() => {
+      setTimeout(() => {
+        triggerReload(!reload);
+      }, 1000)}).catch((error) => {
         setError(error.message);
       });
   };
@@ -196,14 +207,14 @@ const Overview = () => {
             >
               <Grid container spacing={2}>
                 {messages.map((message, index) => (
-                  <Grid item xs={12} {...a11yProps("gridItem", index)}>
-                    <Paper>
-                      <MessageItem
-                        message={message}
-                        {...a11yProps("messageItem", index)}
-                      />
-                    </Paper>
-                  </Grid>
+                    <Grid item xs={12} {...a11yProps("gridItem", index)}>
+                      <Paper>
+                        <MessageItem
+                            data={message}
+                            {...a11yProps("messageItem", index)}
+                        />
+                      </Paper>
+                    </Grid>
                 ))}
               </Grid>
             </TabPanel>
