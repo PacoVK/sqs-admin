@@ -12,14 +12,13 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import { deleteQueue, purgeQueue, sendMessage } from "../aws/SqsClient";
+import { sendMessage } from "../aws/SqsClient";
 import { Queue, SqsMessage } from "../types";
-import { Message } from "@aws-sdk/client-sqs";
-import MessageItem from "../components/MessageItem";
 import CreateQueueDialog from "../components/CreateQueueDialog";
 import Alert from "../components/Alert";
 import useInterval from "../hooks/useInterval";
 import SendMessageDialog from "../components/SendMessageDialog";
+import { callApi } from "../api/Http";
 
 const a11yProps = (id: string, index: number) => {
   return {
@@ -31,9 +30,10 @@ const a11yProps = (id: string, index: number) => {
 const Overview = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [queues, setQueues] = useState([] as Queue[]);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([] as SqsMessage[]);
   const [reload, triggerReload] = useState(true);
   const [error, setError] = useState("");
+  const [disabledStatus, setDisabledStatus] = useState(true);
 
   useInterval(async () => {
     await receiveMessageFromCurrentQueue();
@@ -45,104 +45,82 @@ const Overview = () => {
   }, [queues, tabIndex]);
 
   useEffect(() => {
-    fetch("http://localhost:3999/sqs", {
+    callApi({
       method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((result) => {
-        return result.json();
-      })
-      .then((data) => {
+      onSuccess: (data: Queue[]) => {
         setQueues(data);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+        if (data.length > 0) {
+          setDisabledStatus(false);
+        } else {
+          setDisabledStatus(true);
+        }
+      },
+      onError: setError,
+    });
   }, [reload]);
 
-  const handleChange = async (
-    event: React.SyntheticEvent,
-    newTabIndex: number
-  ) => {
+  const handleChange = (event: React.SyntheticEvent, newTabIndex: number) => {
     setTabIndex(newTabIndex);
   };
 
   const receiveMessageFromCurrentQueue = async () => {
     let queueUrl = queues[tabIndex]?.QueueUrl || null;
     if (queueUrl != null) {
-      fetch("http://localhost:3999/sqs", {
+      await callApi({
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          action: "GetMessages",
-          queue: queues[tabIndex],
-        }),
-      })
-        .then((result) => {
-          return result.json();
-        })
-        .then((data) => {
-          setMessages(data);
-        })
-        .catch((error) => {
-          setError(error.message);
-        });
+        action: "GetMessages",
+        queue: queues[tabIndex],
+        onSuccess: setMessages,
+        onError: setError,
+      });
     }
   };
 
   const createNewQueue = async (queueName: string) => {
-    fetch("http://localhost:3999/sqs", {
+    await callApi({
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+      action: "CreateQueue",
+      queue: {
+        QueueUrl: "",
+        QueueName: queueName,
       },
-      body: JSON.stringify({
-        action: "CreateQueue",
-        queue: {
-          QueueName: queueName,
-        },
-      }),
-    })
-      .then(() => {
+      onSuccess: () => {
         setTimeout(() => {
           triggerReload(!reload);
         }, 1000);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+      },
+      onError: setError,
+    });
   };
 
   const purgeCurrentQueue = async () => {
-    purgeQueue(queues[tabIndex].QueueUrl)
-      .then(() => {
+    await callApi({
+      method: "POST",
+      action: "PurgeQueue",
+      queue: queues[tabIndex],
+      onSuccess: () => {
         setMessages([]);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+      },
+      onError: setError,
+    });
   };
 
   const deleteCurrentQueue = async () => {
-    deleteQueue(queues[tabIndex].QueueUrl)
-      .then(() => {
+    await callApi({
+      method: "POST",
+      action: "DeleteQueue",
+      queue: queues[tabIndex],
+      onSuccess: () => {
         setTimeout(() => {
           triggerReload(!reload);
         }, 1000);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+      },
+      onError: setError,
+    });
   };
 
   const sendMessageToCurrentQueue = async (message: SqsMessage) => {
-    var queueUrl = queues[tabIndex]?.QueueUrl || null;
+    let queueUrl = queues[tabIndex]?.QueueUrl || null;
     if (queueUrl !== null) {
       sendMessage(queueUrl, message).catch((error) => {
         setError(error.message);
@@ -167,11 +145,22 @@ const Overview = () => {
         }}
       >
         <CreateQueueDialog onSubmit={createNewQueue} />
-        <Button variant="contained" onClick={deleteCurrentQueue}>
+        <Button
+          variant="contained"
+          disabled={disabledStatus}
+          onClick={deleteCurrentQueue}
+        >
           Delete Queue
         </Button>
-        <SendMessageDialog onSubmit={sendMessageToCurrentQueue} />
-        <Button variant="contained" onClick={purgeCurrentQueue}>
+        <SendMessageDialog
+          disabled={disabledStatus}
+          onSubmit={sendMessageToCurrentQueue}
+        />
+        <Button
+          variant="contained"
+          disabled={disabledStatus}
+          onClick={purgeCurrentQueue}
+        >
           Purge Queue
         </Button>
       </Container>
@@ -188,7 +177,7 @@ const Overview = () => {
         <Container maxWidth="md">
           <MuiAlert severity="info">
             <AlertTitle>No Queue</AlertTitle>
-            No Queues exist in region eu
+            No Queues exist in region (default was "eu-central-1")
           </MuiAlert>
         </Container>
       ) : (
@@ -213,12 +202,7 @@ const Overview = () => {
               <Grid container spacing={2}>
                 {messages.map((message, index) => (
                   <Grid item xs={12} {...a11yProps("gridItem", index)}>
-                    <Paper>
-                      <MessageItem
-                        data={message}
-                        {...a11yProps("messageItem", index)}
-                      />
-                    </Paper>
+                    <Paper>dd</Paper>
                   </Grid>
                 ))}
               </Grid>

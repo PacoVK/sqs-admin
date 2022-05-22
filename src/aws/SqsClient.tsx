@@ -20,56 +20,10 @@ const sqsClient = new SQSClient({
   },
 });
 
-export const fetchQueues = async () => {
-  const command = new ListQueuesCommand({});
-  return sqsClient.send(command);
-};
-
-export const getQueueAttribute = async (queueUrl: string) => {
-  const command = new GetQueueAttributesCommand({
-    QueueUrl: queueUrl,
-    AttributeNames: ["All"],
-  });
-  return sqsClient.send(command);
-};
-
-export const receiveMessage = async (queueUrl: string) => {
-  const command = new ReceiveMessageCommand({
-    QueueUrl: queueUrl,
-    AttributeNames: ["All"],
-    MaxNumberOfMessages: 10,
-    VisibilityTimeout: 0,
-    WaitTimeSeconds: 0,
-  });
-  return sqsClient.send(command);
-};
-
-export const purgeQueue = async (queueUrl: string) => {
-  const command = new PurgeQueueCommand({
-    QueueUrl: queueUrl,
-  });
-  sqsClient.send(command);
-};
-
-export const deleteQueue = async (queueUrl: string) => {
-  const command = new DeleteQueueCommand({
-    QueueUrl: queueUrl,
-  });
-  sqsClient.send(command);
-};
-
-export const createQueue = async (queueName: string) => {
-  const command = new CreateQueueCommand({
-    QueueName: queueName,
-  });
-  sqsClient.send(command);
-};
-
 export const sendMessage = async (queueUrl: string, message: SqsMessage) => {
   const command = new SendMessageCommand({
     QueueUrl: queueUrl,
-    MessageBody: message.MessageBody,
-    MessageAttributes: message.MessageAttributes,
+    MessageBody: message.messageBody,
   });
   sqsClient.send(command);
 };

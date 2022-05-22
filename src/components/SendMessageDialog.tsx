@@ -29,14 +29,18 @@ const SendMessageDialog = (props: SendMessageDialogProps) => {
 
   const submitSendRequest = () => {
     props.onSubmit({
-      MessageBody: messageBody,
+      messageBody: messageBody,
     });
     handleClose();
   };
 
   return (
     <>
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button
+        variant="contained"
+        disabled={props.disabled}
+        onClick={handleClickOpen}
+      >
         Send message
       </Button>
       <Dialog open={open} onClose={handleClose}>

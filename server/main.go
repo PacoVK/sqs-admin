@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/pacoVK/handler"
 	"github.com/pacoVK/utils"
@@ -17,7 +18,11 @@ func main() {
 	router.PathPrefix("/").Handler(handler.WebsiteHandler()).Methods("GET")
 
 	log.Printf("Backend listening on %v...", HttpPort)
-	err := http.ListenAndServe(HttpPort, router)
+	err := http.ListenAndServe(HttpPort, handlers.CORS(
+		handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"}),
+		handlers.AllowedOrigins([]string{"*"}),
+		handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"}),
+	)(router))
 	if err != nil {
 		log.Fatal(err)
 	}

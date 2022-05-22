@@ -13,6 +13,7 @@ export interface CreateQueueDialogProps {
 
 export interface SendMessageDialogProps {
   onSubmit: (message: SqsMessage) => void;
+  disabled: boolean;
 }
 
 export interface AlertProps {
@@ -22,12 +23,21 @@ export interface AlertProps {
 }
 
 export interface Queue {
-  QueueAttributes: { [key: string]: string } | undefined;
   QueueUrl: string;
   QueueName: string;
+  QueueAttributes?: { [key: string]: string } | undefined;
 }
 
 export interface SqsMessage {
-  MessageBody: string;
-  MessageAttributes?: { [key: string]: MessageAttributeValue } | undefined;
+  messageBody: string;
+  messageId?: string;
+  messageAttributes?: { [key: string]: string } | undefined;
+}
+
+export interface ApiCall {
+  method: string;
+  action?: "CreateQueue" | "DeleteQueue" | "PurgeQueue" | "GetMessages";
+  queue?: Queue;
+  onSuccess: any;
+  onError: (error: string) => void;
 }

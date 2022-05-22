@@ -24,11 +24,15 @@ func SQSHandler(w http.ResponseWriter, r *http.Request) {
 	case "CreateQueue":
 		respondJSON(w, http.StatusOK, aws.CreateQueue(payload.SqsQueue.QueueName))
 	case "DeleteQueue":
-		aws.DeleteQueue(payload.SqsQueue.QueueUrl)
+		respondJSON(w, http.StatusAccepted, aws.DeleteQueue(payload.SqsQueue.QueueUrl))
 	case "PurgeQueue":
-		aws.PurgeQueue(payload.SqsQueue.QueueUrl)
+		respondJSON(w, http.StatusAccepted, aws.PurgeQueue(payload.SqsQueue.QueueUrl))
 	case "GetMessages":
-		respondJSON(w, http.StatusOK, aws.GetMessages(payload.SqsQueue.QueueUrl))
+		messages, err := aws.GetMessages(payload.SqsQueue.QueueUrl)
+		if err != nil {
+			respondError(w, http.StatusBadRequest, err.Error())
+		}
+		respondJSON(w, http.StatusOK, messages)
 	}
 }
 

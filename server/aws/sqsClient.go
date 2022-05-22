@@ -21,7 +21,7 @@ func getQueueAttributes(queueUrl *string) (*sqs.GetQueueAttributesOutput, error)
 }
 
 func ListQueues() []types.SqsQueue {
-	var queues []types.SqsQueue
+	var queues = []types.SqsQueue{}
 	result, err := getQueues()
 	if err != nil {
 		log.Println("Got an error retrieving queue URLs:")
@@ -55,11 +55,11 @@ func receiveMessages(queueUrl *string) (*sqs.ReceiveMessageOutput, error) {
 	})
 }
 
-func GetMessages(queueUrl string) []types.SqsMessage {
+func GetMessages(queueUrl string) ([]types.SqsMessage, error) {
 	var sqsMessages = []types.SqsMessage{}
 	messages, err := receiveMessages(&queueUrl)
 	if err != nil {
-		return nil
+		return nil, err
 	}
 	for _, message := range messages.Messages {
 		sqsMessages = append(sqsMessages, types.SqsMessage{
@@ -68,7 +68,7 @@ func GetMessages(queueUrl string) []types.SqsMessage {
 			MessageAttributes: message.Attributes,
 		})
 	}
-	return sqsMessages
+	return sqsMessages, nil
 }
 
 func purgeQueue(queueUrl *string) (*sqs.PurgeQueueOutput, error) {
