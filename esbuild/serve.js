@@ -5,13 +5,13 @@ const liveServer = require("live-server");
 (async () => {
   const builder = await build({
     bundle: true,
-    entryPoints: ["src/index.tsx"],
+    entryPoints: ["frontend/index.tsx"],
     incremental: true,
     minify: false,
     outfile: "public/assets/app.js",
   });
   chokidar
-    .watch("src/**/*.{ts,tsx}", {
+    .watch("frontend/**/*.{ts,tsx}", {
       interval: 0,
     })
     .on("all", () => {
