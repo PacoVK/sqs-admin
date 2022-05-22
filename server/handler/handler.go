@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"errors"
 	"github.com/pacoVK/aws"
 	"github.com/pacoVK/aws/types"
 	"io/ioutil"
@@ -22,17 +23,23 @@ func SQSHandler(w http.ResponseWriter, r *http.Request) {
 	payload := unpackPayload(r)
 	switch payload.Action {
 	case "CreateQueue":
-		respondJSON(w, http.StatusOK, aws.CreateQueue(payload.SqsQueue.QueueName))
+		checkErrorAndRespond(aws.CreateQueue(payload.SqsQueue.QueueName), &w)
+	case "SendMessage":
+		checkErrorAndRespond(aws.SendMessage(payload.SqsQueue.QueueUrl, payload.SqsMessage), &w)
 	case "DeleteQueue":
-		respondJSON(w, http.StatusAccepted, aws.DeleteQueue(payload.SqsQueue.QueueUrl))
+		checkErrorAndRespond(aws.DeleteQueue(payload.SqsQueue.QueueUrl), &w)
 	case "PurgeQueue":
-		respondJSON(w, http.StatusAccepted, aws.PurgeQueue(payload.SqsQueue.QueueUrl))
+		checkErrorAndRespond(aws.PurgeQueue(payload.SqsQueue.QueueUrl), &w)
 	case "GetMessages":
 		messages, err := aws.GetMessages(payload.SqsQueue.QueueUrl)
 		if err != nil {
 			respondError(w, http.StatusBadRequest, err.Error())
+		} else {
+			respondJSON(w, http.StatusOK, messages)
 		}
-		respondJSON(w, http.StatusOK, messages)
+	default:
+		log.Println("DEFAULT")
+		respondError(w, http.StatusBadRequest, errors.New("unsupported method").Error())
 	}
 }
 
@@ -60,4 +67,12 @@ func respondJSON(w http.ResponseWriter, status int, payload interface{}) {
 
 func respondError(w http.ResponseWriter, code int, message string) {
 	respondJSON(w, code, map[string]string{"error": message})
+}
+
+func checkErrorAndRespond(err error, w *http.ResponseWriter) {
+	if err != nil {
+		respondError(*w, http.StatusBadRequest, err.Error())
+	} else {
+		respondJSON(*w, http.StatusOK, nil)
+	}
 }

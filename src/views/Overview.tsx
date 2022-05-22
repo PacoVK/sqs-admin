@@ -12,13 +12,13 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import { sendMessage } from "../aws/SqsClient";
 import { Queue, SqsMessage } from "../types";
 import CreateQueueDialog from "../components/CreateQueueDialog";
 import Alert from "../components/Alert";
 import useInterval from "../hooks/useInterval";
 import SendMessageDialog from "../components/SendMessageDialog";
 import { callApi } from "../api/Http";
+import MessageItem from "../components/MessageItem";
 
 const a11yProps = (id: string, index: number) => {
   return {
@@ -50,8 +50,10 @@ const Overview = () => {
       onSuccess: (data: Queue[]) => {
         setQueues(data);
         if (data.length > 0) {
+          setTabIndex(data.length - 1);
           setDisabledStatus(false);
         } else {
+          setTabIndex(0);
           setDisabledStatus(true);
         }
       },
@@ -122,8 +124,13 @@ const Overview = () => {
   const sendMessageToCurrentQueue = async (message: SqsMessage) => {
     let queueUrl = queues[tabIndex]?.QueueUrl || null;
     if (queueUrl !== null) {
-      sendMessage(queueUrl, message).catch((error) => {
-        setError(error.message);
+      await callApi({
+        method: "POST",
+        action: "SendMessage",
+        queue: queues[tabIndex],
+        message: message,
+        onSuccess: () => {},
+        onError: setError,
       });
     } else {
       setError("Could not send message to non-existent queue");
@@ -173,7 +180,7 @@ const Overview = () => {
           />
         </Container>
       ) : null}
-      {queues.length === 0 ? (
+      {queues?.length === 0 ? (
         <Container maxWidth="md">
           <MuiAlert severity="info">
             <AlertTitle>No Queue</AlertTitle>
@@ -188,21 +195,26 @@ const Overview = () => {
               onChange={handleChange}
               aria-label="SQS overview"
             >
-              {queues.map((queue, index) => (
+              {queues?.map((queue, index) => (
                 <Tab label={queue.QueueName} {...a11yProps("tab", index)} />
               ))}
             </Tabs>
           </Box>
-          {queues.map((queue, index) => (
+          {queues?.map((queue, index) => (
             <TabPanel
               value={tabIndex}
               index={index}
               {...a11yProps("tabpanel", index)}
             >
               <Grid container spacing={2}>
-                {messages.map((message, index) => (
+                {messages?.map((message, index) => (
                   <Grid item xs={12} {...a11yProps("gridItem", index)}>
-                    <Paper>dd</Paper>
+                    <Paper>
+                      <MessageItem
+                        data={message}
+                        {...a11yProps("messageItem", index)}
+                      />
+                    </Paper>
                   </Grid>
                 ))}
               </Grid>

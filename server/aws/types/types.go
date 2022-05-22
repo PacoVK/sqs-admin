@@ -13,6 +13,7 @@ type SqsMessage struct {
 }
 
 type Request struct {
-	Action   string   `json:"action"`
-	SqsQueue SqsQueue `json:"queue"`
+	Action     string     `json:"action"`
+	SqsQueue   SqsQueue   `json:"queue"`
+	SqsMessage SqsMessage `json:"message"`
 }

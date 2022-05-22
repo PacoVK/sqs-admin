@@ -12,6 +12,7 @@ const callApi = async (apiCall: ApiCall) => {
       ? JSON.stringify({
           action: apiCall.action,
           queue: apiCall.queue,
+          message: apiCall.message ? apiCall.message : "",
         })
       : null,
   })

@@ -36,8 +36,14 @@ export interface SqsMessage {
 
 export interface ApiCall {
   method: string;
-  action?: "CreateQueue" | "DeleteQueue" | "PurgeQueue" | "GetMessages";
+  action?:
+    | "CreateQueue"
+    | "DeleteQueue"
+    | "PurgeQueue"
+    | "GetMessages"
+    | "SendMessage";
   queue?: Queue;
+  message?: any;
   onSuccess: any;
   onError: (error: string) => void;
 }
