@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 
 COPY server .
 
-RUN go build -o local-sqs-admin .
+RUN go build -o sqs-admin .
 
 FROM alpine
 
@@ -20,6 +20,6 @@ WORKDIR /usr/src/app/server
 
 COPY --from=REACT_BUILDER /usr/src/app/public /usr/src/app/public
 
-COPY --from=GOLANG_BUILDER /usr/src/app/sqs-admin ./local-sqs-admin
+COPY --from=GOLANG_BUILDER /usr/src/app/sqs-admin ./sqs-admin
 
-ENTRYPOINT ["./local-sqs-admin"]
+ENTRYPOINT ["./sqs-admin"]
