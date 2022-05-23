@@ -1,22 +1,25 @@
-FROM node:18-alpine AS BUILD_IMAGE
+FROM node:18-alpine AS REACT_BUILDER
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-RUN yarn install && yarn build
+RUN npm install && npm run build
 
-FROM node:18-alpine
+FROM golang:alpine AS GOLANG_BUILDER
 
 WORKDIR /usr/src/app
 
-RUN yarn global add serve
+COPY server .
 
-COPY --from=BUILD_IMAGE /usr/src/app/build ./build
+RUN go build -o local-sqs-admin .
 
-RUN yarn install --production \
-    && yarn autoclean --force
+FROM alpine
 
-EXPOSE 3000
+WORKDIR /usr/src/app/server
 
-CMD ["serve", "-s", "build"]
+COPY --from=REACT_BUILDER /usr/src/app/public /usr/src/app/public
+
+COPY --from=GOLANG_BUILDER /usr/src/app/sqs-admin ./local-sqs-admin
+
+ENTRYPOINT ["./local-sqs-admin"]

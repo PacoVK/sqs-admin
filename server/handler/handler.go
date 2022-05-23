@@ -23,12 +23,16 @@ func SQSHandler(w http.ResponseWriter, r *http.Request) {
 	payload := unpackPayload(r)
 	switch payload.Action {
 	case "CreateQueue":
+		log.Printf("Creating queue [%v]", payload.SqsQueue.QueueName)
 		checkErrorAndRespond(aws.CreateQueue(payload.SqsQueue.QueueName), &w)
 	case "SendMessage":
+		log.Printf("Send message to queue [%v]", payload.SqsQueue.QueueName)
 		checkErrorAndRespond(aws.SendMessage(payload.SqsQueue.QueueUrl, payload.SqsMessage), &w)
 	case "DeleteQueue":
+		log.Printf("Deleting queue [%v]", payload.SqsQueue.QueueName)
 		checkErrorAndRespond(aws.DeleteQueue(payload.SqsQueue.QueueUrl), &w)
 	case "PurgeQueue":
+		log.Printf("Purging queue [%v]", payload.SqsQueue.QueueName)
 		checkErrorAndRespond(aws.PurgeQueue(payload.SqsQueue.QueueUrl), &w)
 	case "GetMessages":
 		messages, err := aws.GetMessages(payload.SqsQueue.QueueUrl)
@@ -38,7 +42,7 @@ func SQSHandler(w http.ResponseWriter, r *http.Request) {
 			respondJSON(w, http.StatusOK, messages)
 		}
 	default:
-		log.Println("DEFAULT")
+		log.Printf("Unsupported action provided [%v]", payload.Action)
 		respondError(w, http.StatusBadRequest, errors.New("unsupported method").Error())
 	}
 }
