@@ -10,7 +10,7 @@ A working example can be found in the ``example`` directory.
 You probably need to have a SQS up and running somewhere to connect to, e.g. via Localstack.
 To start SQS-Admin simply run:
 ``
-docker run --rm -p 3999:3999 -e SQS_ENDPOINT_URL=<Endpoint-URL-of-our-SQS> -d paco0512/sqs-admin
+docker run --rm -p 3999:3999 -e SQS_ENDPOINT_URL=<Endpoint-URL-of-our-SQS> -d pacovk/sqs-admin
 ``
 
 ## Configuration ##
