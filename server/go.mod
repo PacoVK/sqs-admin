@@ -1,6 +1,6 @@
 module github.com/pacoVK
 
-go 1.14
+go 1.18
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.16.4

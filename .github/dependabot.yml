@@ -1,9 +1,25 @@
 version: 2
 updates:
-  - package-ecosystem: "gitsubmodule"
+  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
     labels:
       - "dependencies"
-      - "automerge"
+      - "github"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+      - "npm"
+
+  - package-ecosystem: "gomod"
+    directory: "/server"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+      - "go"

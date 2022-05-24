@@ -1,6 +1,6 @@
 # SQS-Admin # 
 
-A lightweight UI for managing SQS-Queues for local development e.g. with [Localstack](https://localstack.cloud/).
+A minimal and lightweight UI for managing SQS-Queues for local development e.g. with [Localstack](https://localstack.cloud/).
 
 ## Usage ##
 
@@ -29,3 +29,7 @@ To configure the backend for local development you can set the following environ
 | ENV              | Description                                                    | Default               |
 |------------------|----------------------------------------------------------------|-----------------------|
 | HTTP_PORT        | Port that the internal backend binds to and is serving         | 3999                  |
+
+### Legal note ### 
+
+UI favicon by [John Sorrentino](https://favicon.io/emoji-favicons/cowboy-hat-face)
