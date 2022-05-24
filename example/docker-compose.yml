@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   sqs-admin:
-    image:  paco0512/sqs-admin
+    image:  pacovk/sqs-admin
     ports:
       - "3999:3999"
     environment:
