@@ -6,6 +6,7 @@
     "name": "pacoVK",
     "url": "https://pascal.euhus.dev"
   },
+  "repository": "https://github.com/PacoVK/sqs-admin",
   "license": "Apache-2.0",
   "dependencies": {
     "@emotion/react": "^11.9.0",
