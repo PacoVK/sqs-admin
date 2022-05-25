@@ -113,6 +113,7 @@ const Overview = () => {
       action: "DeleteQueue",
       queue: queues[tabIndex],
       onSuccess: () => {
+        setMessages([]);
         setTimeout(() => {
           triggerReload(!reload);
         }, 1000);
