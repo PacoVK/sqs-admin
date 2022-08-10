@@ -45,7 +45,7 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "chokidar": "^3.5.3",
-    "esbuild": "^0.14.53",
+    "esbuild": "^0.15.0",
     "live-server": "^1.2.2",
     "prettier": "2.7.1",
     "react-scripts": "5.0.1",
