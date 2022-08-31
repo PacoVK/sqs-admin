@@ -10,20 +10,32 @@ import (
 	"net/http"
 )
 
-func main() {
-	HttpPort := fmt.Sprintf(":%v", utils.GetEnv("HTTP_PORT", "3999"))
-	router := mux.NewRouter()
-	router.HandleFunc("/sqs", handler.ListQueuesHandler).Methods("GET")
-	router.HandleFunc("/sqs", handler.SQSHandler).Methods("POST")
-	router.PathPrefix("/").Handler(handler.WebsiteHandler()).Methods("GET")
+type App struct {
+	Router *mux.Router
+}
 
+func (app *App) Initialize() *App {
+	router := mux.NewRouter()
+	handler.SQSHandler().AddRoute(router)
+	router.PathPrefix("/").Handler(handler.WebsiteHandler()).Methods("GET")
+	app.Router = router
+	return app
+}
+
+func (app *App) Run() {
+	HttpPort := fmt.Sprintf(":%v", utils.GetEnv("HTTP_PORT", "3999"))
 	log.Printf("Backend listening on %v...", HttpPort)
 	err := http.ListenAndServe(HttpPort, handlers.CORS(
 		handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"}),
 		handlers.AllowedOrigins([]string{"*"}),
 		handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"}),
-	)(router))
+	)(app.Router))
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func main() {
+	app := App{}
+	app.Initialize().Run()
 }

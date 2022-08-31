@@ -1,0 +1,22 @@
+name: Server tests
+on: push
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    container: golang:alpine
+    services:
+      localstack:
+        image: localstack/localstack:1.0.4
+        env:
+          SERVICES: sqs
+          EXTRA_CORS_ALLOWED_ORIGINS: "*"
+    env:
+      AWS_ACCESS_KEY_ID: fake
+      AWS_SECRET_ACCESS_KEY: fake
+      SQS_ENDPOINT_URL: http://localstack:4566
+    steps:
+      - uses: actions/checkout@v3
+      - name: test
+        working-directory: server
+        run: go test -v ./...
