@@ -21,18 +21,16 @@ func getQueueAttributes(queueUrl *string) (*sqs.GetQueueAttributesOutput, error)
 }
 
 func ListQueues() []types.SqsQueue {
-	var queues = []types.SqsQueue{}
+	var queues = make([]types.SqsQueue, 0)
 	result, err := getQueues()
 	if err != nil {
-		log.Println("Got an error retrieving queue URLs:")
-		log.Println(err)
+		log.Printf("Got an error retrieving queue URLs: %v", err.Error())
 		return queues
 	}
 	for _, url := range result.QueueUrls {
 		attributes, err := getQueueAttributes(&url)
 		if err != nil {
-			log.Println("Got an error retrieving queue Attributes:")
-			log.Println(err)
+			log.Printf("Got an error retrieving queue Attributes: %v", err.Error())
 			return queues
 		}
 		arnParts := strings.Split(attributes.Attributes["QueueArn"], ":")
@@ -56,7 +54,7 @@ func receiveMessages(queueUrl *string) (*sqs.ReceiveMessageOutput, error) {
 }
 
 func GetMessages(queueUrl string) ([]types.SqsMessage, error) {
-	var sqsMessages = []types.SqsMessage{}
+	var sqsMessages = make([]types.SqsMessage, 0)
 	messages, err := receiveMessages(&queueUrl)
 	if err != nil {
 		return nil, err
@@ -71,59 +69,27 @@ func GetMessages(queueUrl string) ([]types.SqsMessage, error) {
 	return sqsMessages, nil
 }
 
-func purgeQueue(queueUrl *string) (*sqs.PurgeQueueOutput, error) {
+func PurgeQueue(queueUrl string) (*sqs.PurgeQueueOutput, error) {
 	return sqsClient.PurgeQueue(context.TODO(), &sqs.PurgeQueueInput{
-		QueueUrl: queueUrl,
+		QueueUrl: &queueUrl,
 	})
 }
 
-func PurgeQueue(queueUrl string) error {
-	_, err := purgeQueue(&queueUrl)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func deleteQueue(queueUrl *string) (*sqs.DeleteQueueOutput, error) {
+func DeleteQueue(queueUrl string) (*sqs.DeleteQueueOutput, error) {
 	return sqsClient.DeleteQueue(context.TODO(), &sqs.DeleteQueueInput{
-		QueueUrl: queueUrl,
+		QueueUrl: &queueUrl,
 	})
 }
 
-func DeleteQueue(queueUrl string) error {
-	_, err := deleteQueue(&queueUrl)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func createQueue(queueName *string) (*sqs.CreateQueueOutput, error) {
+func CreateQueue(queueName string) (*sqs.CreateQueueOutput, error) {
 	return sqsClient.CreateQueue(context.TODO(), &sqs.CreateQueueInput{
-		QueueName: queueName,
+		QueueName: &queueName,
 	})
 }
 
-func CreateQueue(queueName string) error {
-	_, err := createQueue(&queueName)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func sendMessage(queueUrl *string, sqsMessage *types.SqsMessage) (*sqs.SendMessageOutput, error) {
+func SendMessage(queueUrl string, sqsMessage types.SqsMessage) (*sqs.SendMessageOutput, error) {
 	return sqsClient.SendMessage(context.TODO(), &sqs.SendMessageInput{
-		QueueUrl:    queueUrl,
+		QueueUrl:    &queueUrl,
 		MessageBody: &sqsMessage.MessageBody,
 	})
-}
-
-func SendMessage(queueUrl string, sqsMessage types.SqsMessage) error {
-	_, err := sendMessage(&queueUrl, &sqsMessage)
-	if err != nil {
-		return err
-	}
-	return nil
 }

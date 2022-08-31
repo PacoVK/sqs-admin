@@ -2,54 +2,31 @@ package handler
 
 import (
 	"encoding/json"
-	"errors"
-	"github.com/pacoVK/aws"
+	"github.com/gorilla/mux"
 	"github.com/pacoVK/aws/types"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 )
 
-func WebsiteHandler() http.Handler {
-	return http.FileServer(http.Dir("../public"))
+type Handler struct {
+	Route func(r *mux.Route)
+	Func  http.HandlerFunc
 }
 
-func ListQueuesHandler(w http.ResponseWriter, r *http.Request) {
-	queues := aws.ListQueues()
-	respondJSON(w, http.StatusOK, queues)
+type Response struct {
+	Payload    interface{} `json:"payload"`
+	StatusCode int         `json:"statusCode"`
+	Error      error       `json:"error"`
 }
 
-func SQSHandler(w http.ResponseWriter, r *http.Request) {
-	payload := unpackPayload(r)
-	switch payload.Action {
-	case "CreateQueue":
-		log.Printf("Creating queue [%v]", payload.SqsQueue.QueueName)
-		checkErrorAndRespond(aws.CreateQueue(payload.SqsQueue.QueueName), &w)
-	case "SendMessage":
-		log.Printf("Send message to queue [%v]", payload.SqsQueue.QueueName)
-		checkErrorAndRespond(aws.SendMessage(payload.SqsQueue.QueueUrl, payload.SqsMessage), &w)
-	case "DeleteQueue":
-		log.Printf("Deleting queue [%v]", payload.SqsQueue.QueueName)
-		checkErrorAndRespond(aws.DeleteQueue(payload.SqsQueue.QueueUrl), &w)
-	case "PurgeQueue":
-		log.Printf("Purging queue [%v]", payload.SqsQueue.QueueName)
-		checkErrorAndRespond(aws.PurgeQueue(payload.SqsQueue.QueueUrl), &w)
-	case "GetMessages":
-		messages, err := aws.GetMessages(payload.SqsQueue.QueueUrl)
-		if err != nil {
-			respondError(w, http.StatusBadRequest, err.Error())
-		} else {
-			respondJSON(w, http.StatusOK, messages)
-		}
-	default:
-		log.Printf("Unsupported action provided [%v]", payload.Action)
-		respondError(w, http.StatusBadRequest, errors.New("unsupported method").Error())
-	}
+func (h Handler) AddRoute(r *mux.Router) {
+	h.Route(r.NewRoute().HandlerFunc(h.Func))
 }
 
-func unpackPayload(r *http.Request) *types.Request {
+func unpackRequestPayload(r io.ReadCloser) *types.Request {
 	data := types.Request{}
-	jsonBlob, err := ioutil.ReadAll(r.Body)
+	jsonBlob, err := io.ReadAll(r)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -57,26 +34,41 @@ func unpackPayload(r *http.Request) *types.Request {
 	return &data
 }
 
-func respondJSON(w http.ResponseWriter, status int, payload interface{}) {
-	response, err := json.Marshal(payload)
+func unpackResponsePayload(r io.ReadCloser) []types.SqsMessage {
+	data := make([]types.SqsMessage, 0)
+	jsonBlob, err := io.ReadAll(r)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(err.Error()))
-		return
+		log.Fatal(err.Error())
+	}
+	json.Unmarshal(jsonBlob, &data)
+	return data
+}
+
+func respondJSON(w http.ResponseWriter, res Response) {
+	var response, err = json.Marshal(res.Payload)
+	if err != nil {
+		respondJSON(w, Response{
+			StatusCode: http.StatusInternalServerError,
+			Error:      err,
+		})
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(status)
+	w.WriteHeader(res.StatusCode)
 	w.Write(response)
 }
 
-func respondError(w http.ResponseWriter, code int, message string) {
-	respondJSON(w, code, map[string]string{"error": message})
-}
-
-func checkErrorAndRespond(err error, w *http.ResponseWriter) {
-	if err != nil {
-		respondError(*w, http.StatusBadRequest, err.Error())
+func checkForErrorAndRespondJSON(w *http.ResponseWriter, res Response) {
+	if res.Error != nil {
+		respondJSON(*w, Response{
+			Payload:    nil,
+			StatusCode: http.StatusBadRequest,
+			Error:      res.Error,
+		})
 	} else {
-		respondJSON(*w, http.StatusOK, nil)
+		respondJSON(*w, Response{
+			Payload:    res.Payload,
+			StatusCode: http.StatusOK,
+			Error:      nil,
+		})
 	}
 }
