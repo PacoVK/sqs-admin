@@ -5,7 +5,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
-	"github.com/aws/aws-sdk-go-v2/service/sqs"
 	"github.com/pacoVK/utils"
 )
 
@@ -26,5 +25,3 @@ var awsConfig, _ = config.LoadDefaultConfig(context.TODO(),
 		utils.GetEnv("SQS_AWS_REGION", "eu-central-1"),
 	),
 )
-
-var sqsClient = sqs.NewFromConfig(awsConfig)

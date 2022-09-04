@@ -9,6 +9,8 @@ import (
 	"strings"
 )
 
+var sqsClient = sqs.NewFromConfig(awsConfig)
+
 func getQueues() (*sqs.ListQueuesOutput, error) {
 	return sqsClient.ListQueues(context.TODO(), &sqs.ListQueuesInput{})
 }
