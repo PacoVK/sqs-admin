@@ -3,7 +3,7 @@ package aws
 import (
 	"context"
 	"github.com/aws/aws-sdk-go-v2/service/sqs"
-	awsTypes "github.com/aws/aws-sdk-go-v2/service/sqs/types"
+	sqsTypes "github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	"github.com/pacoVK/aws/types"
 	"log"
 	"strings"
@@ -16,7 +16,7 @@ func getQueues() (*sqs.ListQueuesOutput, error) {
 func getQueueAttributes(queueUrl *string) (*sqs.GetQueueAttributesOutput, error) {
 	return sqsClient.GetQueueAttributes(context.TODO(), &sqs.GetQueueAttributesInput{
 		QueueUrl:       queueUrl,
-		AttributeNames: []awsTypes.QueueAttributeName{awsTypes.QueueAttributeNameAll},
+		AttributeNames: []sqsTypes.QueueAttributeName{sqsTypes.QueueAttributeNameAll},
 	})
 }
 
@@ -46,7 +46,7 @@ func ListQueues() []types.SqsQueue {
 func receiveMessages(queueUrl *string) (*sqs.ReceiveMessageOutput, error) {
 	return sqsClient.ReceiveMessage(context.TODO(), &sqs.ReceiveMessageInput{
 		QueueUrl:            queueUrl,
-		AttributeNames:      []awsTypes.QueueAttributeName{awsTypes.QueueAttributeNameAll},
+		AttributeNames:      []sqsTypes.QueueAttributeName{sqsTypes.QueueAttributeNameAll},
 		VisibilityTimeout:   1,
 		MaxNumberOfMessages: 10,
 		WaitTimeSeconds:     1,

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/pacoVK/aws"
+	"github.com/pacoVK/types"
 	"log"
 	"net/http"
 )
@@ -25,7 +26,8 @@ func SQSHandler() Handler {
 					StatusCode: http.StatusOK,
 				})
 			} else {
-				payload := unpackRequestPayload(request.Body)
+				payload := types.Request{}
+				unmarshalJsonData(request.Body, &payload)
 				switch payload.Action {
 				case "CreateQueue":
 					log.Printf("Creating queue [%v]", payload.SqsQueue.QueueName)

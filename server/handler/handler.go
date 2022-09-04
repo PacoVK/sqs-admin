@@ -3,7 +3,6 @@ package handler
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"github.com/pacoVK/aws/types"
 	"io"
 	"log"
 	"net/http"
@@ -24,24 +23,13 @@ func (h Handler) AddRoute(r *mux.Router) {
 	h.Route(r.NewRoute().HandlerFunc(h.Func))
 }
 
-func unpackRequestPayload(r io.ReadCloser) *types.Request {
-	data := types.Request{}
+func unmarshalJsonData(r io.ReadCloser, target interface{}) interface{} {
 	jsonBlob, err := io.ReadAll(r)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	json.Unmarshal(jsonBlob, &data)
-	return &data
-}
-
-func unpackResponsePayload(r io.ReadCloser) []types.SqsMessage {
-	data := make([]types.SqsMessage, 0)
-	jsonBlob, err := io.ReadAll(r)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	json.Unmarshal(jsonBlob, &data)
-	return data
+	json.Unmarshal(jsonBlob, &target)
+	return target
 }
 
 func respondJSON(w http.ResponseWriter, res Response) {

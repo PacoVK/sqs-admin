@@ -6,7 +6,8 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/pacoVK/aws"
-	"github.com/pacoVK/aws/types"
+	awsTypes "github.com/pacoVK/aws/types"
+	"github.com/pacoVK/types"
 	"github.com/pacoVK/utils"
 	"io"
 	"net/http"
@@ -43,7 +44,7 @@ func tearDown() {
 func TestCreateSqsQueues(t *testing.T) {
 	var s, _ = json.Marshal(types.Request{
 		Action: "CreateQueue",
-		SqsQueue: types.SqsQueue{
+		SqsQueue: awsTypes.SqsQueue{
 			QueueUrl:  testingQueueUrl,
 			QueueName: testingQueueName,
 		},
@@ -68,11 +69,11 @@ func TestListSqsQueues(t *testing.T) {
 func TestSendMessages(t *testing.T) {
 	var s, _ = json.Marshal(types.Request{
 		Action: "SendMessage",
-		SqsQueue: types.SqsQueue{
+		SqsQueue: awsTypes.SqsQueue{
 			QueueName: testingQueueName,
 			QueueUrl:  testingQueueUrl,
 		},
-		SqsMessage: types.SqsMessage{
+		SqsMessage: awsTypes.SqsMessage{
 			MessageBody: "Funky Honker Land",
 		},
 	})
@@ -87,7 +88,7 @@ func TestSendMessages(t *testing.T) {
 func TestReceiveMessages(t *testing.T) {
 	var s, _ = json.Marshal(types.Request{
 		Action: "GetMessages",
-		SqsQueue: types.SqsQueue{
+		SqsQueue: awsTypes.SqsQueue{
 			QueueUrl: testingQueueUrl,
 		},
 	})
@@ -95,7 +96,8 @@ func TestReceiveMessages(t *testing.T) {
 	response := executeRequest(req, router)
 	checkResponseCode(t, http.StatusOK, response.Code)
 	stringReader := strings.NewReader(response.Body.String())
-	payload := unpackResponsePayload(io.NopCloser(stringReader))
+	payload := make([]awsTypes.SqsMessage, 0)
+	unmarshalJsonData(io.NopCloser(stringReader), &payload)
 	if len(payload) != 1 {
 		t.Error("Received wrong amount of messages , got", len(payload))
 	}
@@ -107,7 +109,7 @@ func TestReceiveMessages(t *testing.T) {
 func TestPurgeSqsQueues(t *testing.T) {
 	var s, _ = json.Marshal(types.Request{
 		Action: "PurgeQueue",
-		SqsQueue: types.SqsQueue{
+		SqsQueue: awsTypes.SqsQueue{
 			QueueUrl:  testingQueueUrl,
 			QueueName: testingQueueName,
 		},
@@ -123,7 +125,7 @@ func TestPurgeSqsQueues(t *testing.T) {
 func TestReceiveEmptyMessages(t *testing.T) {
 	var s, _ = json.Marshal(types.Request{
 		Action: "GetMessages",
-		SqsQueue: types.SqsQueue{
+		SqsQueue: awsTypes.SqsQueue{
 			QueueUrl: testingQueueUrl,
 		},
 	})
@@ -138,7 +140,7 @@ func TestReceiveEmptyMessages(t *testing.T) {
 func TestDeleteSqsQueues(t *testing.T) {
 	var s, _ = json.Marshal(types.Request{
 		Action: "DeleteQueue",
-		SqsQueue: types.SqsQueue{
+		SqsQueue: awsTypes.SqsQueue{
 			QueueUrl:  testingQueueUrl,
 			QueueName: testingQueueName,
 		},
