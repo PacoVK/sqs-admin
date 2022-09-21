@@ -3,7 +3,7 @@ module github.com/pacoVK
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.16.13
+	github.com/aws/aws-sdk-go-v2 v1.16.16
 	github.com/aws/aws-sdk-go-v2/config v1.17.4
 	github.com/aws/aws-sdk-go-v2/credentials v1.12.17
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.19.7
@@ -20,6 +20,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sso v1.11.20 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.13.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.16.16 // indirect
-	github.com/aws/smithy-go v1.13.1 // indirect
+	github.com/aws/smithy-go v1.13.3 // indirect
 	github.com/felixge/httpsnoop v1.0.1 // indirect
 )
