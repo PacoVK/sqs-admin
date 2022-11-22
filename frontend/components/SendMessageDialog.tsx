@@ -13,10 +13,12 @@ import { SendMessageDialogProps } from "../types";
 const SendMessageDialog = (props: SendMessageDialogProps) => {
   const [open, setOpen] = useState(false);
   const [messageBody, setMessageBody] = useState("");
+  const [messageGroupId, setMessageGroupId] = useState("");
 
   const handleClickOpen = () => {
     setMessageBody("");
     setOpen(true);
+    setMessageGroupId("");
   };
 
   const handleClose = () => {
@@ -27,9 +29,14 @@ const SendMessageDialog = (props: SendMessageDialogProps) => {
     setMessageBody(event.target.value);
   };
 
+  const handleGroupIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMessageGroupId(event.target.value);
+  };
+
   const submitSendRequest = () => {
     props.onSubmit({
       messageBody: messageBody,
+      messageGroupId: messageGroupId === "" ? undefined : messageGroupId,
     });
     handleClose();
   };
@@ -58,6 +65,16 @@ const SendMessageDialog = (props: SendMessageDialogProps) => {
             fullWidth
             value={messageBody}
             onChange={handleChange}
+            variant="standard"
+          />
+          <TextField
+            margin="dense"
+            id="messageGroupId"
+            label="Message-Group-Id"
+            type="text"
+            fullWidth
+            value={messageGroupId}
+            onChange={handleGroupIdChange}
             variant="standard"
           />
         </DialogContent>

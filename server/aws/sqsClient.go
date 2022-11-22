@@ -7,6 +7,7 @@ import (
 	"github.com/pacoVK/aws/types"
 	"log"
 	"strings"
+	"github.com/google/uuid"
 )
 
 func getQueues() (*sqs.ListQueuesOutput, error) {
@@ -88,8 +89,14 @@ func CreateQueue(queueName string) (*sqs.CreateQueueOutput, error) {
 }
 
 func SendMessage(queueUrl string, sqsMessage types.SqsMessage) (*sqs.SendMessageOutput, error) {
+	deduplicationId := sqsMessage.MessageGroupId
+	if len(deduplicationId) > 0 {
+		deduplicationId = uuid.New().String()
+	}
 	return sqsClient.SendMessage(context.TODO(), &sqs.SendMessageInput{
 		QueueUrl:    &queueUrl,
 		MessageBody: &sqsMessage.MessageBody,
+		MessageGroupId: &sqsMessage.MessageGroupId,
+		MessageDeduplicationId: &deduplicationId,
 	})
 }

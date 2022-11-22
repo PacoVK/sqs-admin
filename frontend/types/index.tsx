@@ -32,6 +32,7 @@ export interface SqsMessage {
   messageBody: string;
   messageId?: string;
   messageAttributes?: { [key: string]: string } | undefined;
+  messageGroupId?: string;
 }
 
 export interface ApiCall {
