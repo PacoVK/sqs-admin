@@ -2,15 +2,15 @@ name: Build and Deploy
 
 on:
   schedule:
-    - cron: '0 05 * * *'
+    - cron: "0 05 * * *"
   push:
     branches:
       - main
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
   pull_request:
     branches:
-      - 'main'
+      - "main"
 
 jobs:
   docker:
