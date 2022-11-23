@@ -1,6 +1,5 @@
-version: '3.7'
+version: "3.7"
 services:
-
   localstack:
     image: localstack/localstack
     ports:

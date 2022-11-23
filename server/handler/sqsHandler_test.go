@@ -41,11 +41,13 @@ func tearDown() {
 }
 
 func TestCreateSqsQueues(t *testing.T) {
+	fakeAttributes := make(map[string]string)
 	var s, _ = json.Marshal(types.Request{
 		Action: "CreateQueue",
 		SqsQueue: types.SqsQueue{
-			QueueUrl:  testingQueueUrl,
-			QueueName: testingQueueName,
+			QueueUrl:        testingQueueUrl,
+			QueueName:       testingQueueName,
+			QueueAttributes: &fakeAttributes,
 		},
 	})
 	req, _ := http.NewRequest("POST", "/sqs", bytes.NewBuffer(s))

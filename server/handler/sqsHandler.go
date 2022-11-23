@@ -28,8 +28,8 @@ func SQSHandler() Handler {
 				payload := unpackRequestPayload(request.Body)
 				switch payload.Action {
 				case "CreateQueue":
-					log.Printf("Creating queue [%v]", payload.SqsQueue.QueueName)
-					_, err := aws.CreateQueue(payload.SqsQueue.QueueName)
+					log.Printf("Creating queue [%v] with attributes [%v]", payload.SqsQueue.QueueName, payload.SqsQueue.QueueAttributes)
+					_, err := aws.CreateQueue(payload.SqsQueue.QueueName, payload.SqsQueue.QueueAttributes)
 					checkForErrorAndRespondJSON(&writer, Response{
 						Payload: nil,
 						Error:   err,

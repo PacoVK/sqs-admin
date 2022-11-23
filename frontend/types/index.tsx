@@ -1,5 +1,4 @@
 import { AlertColor } from "@mui/material";
-import { MessageAttributeValue } from "@aws-sdk/client-sqs";
 
 export interface TabPanelProps {
   children?: React.ReactNode;
@@ -8,12 +7,13 @@ export interface TabPanelProps {
 }
 
 export interface CreateQueueDialogProps {
-  onSubmit: (queueName: string) => void;
+  onSubmit: (queue: Queue) => void;
 }
 
 export interface SendMessageDialogProps {
   onSubmit: (message: SqsMessage) => void;
   disabled: boolean;
+  queue: Queue;
 }
 
 export interface AlertProps {
@@ -23,8 +23,8 @@ export interface AlertProps {
 }
 
 export interface Queue {
-  QueueUrl: string;
   QueueName: string;
+  QueueUrl?: string;
   QueueAttributes?: { [key: string]: string } | undefined;
 }
 
@@ -32,6 +32,7 @@ export interface SqsMessage {
   messageBody: string;
   messageId?: string;
   messageAttributes?: { [key: string]: string } | undefined;
+  messageGroupId?: string;
 }
 
 export interface ApiCall {
