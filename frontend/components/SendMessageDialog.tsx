@@ -73,8 +73,14 @@ const SendMessageDialog = (props: SendMessageDialogProps) => {
             label="Message-Group-Id"
             type="text"
             fullWidth
+            required={true}
             value={messageGroupId}
             onChange={handleGroupIdChange}
+            style={{
+              display: props.queue?.QueueName.endsWith(".fifo")
+                ? "flex"
+                : "none",
+            }}
             variant="standard"
           />
         </DialogContent>

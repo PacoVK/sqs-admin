@@ -4,10 +4,10 @@ import (
 	"context"
 	"github.com/aws/aws-sdk-go-v2/service/sqs"
 	awsTypes "github.com/aws/aws-sdk-go-v2/service/sqs/types"
+	"github.com/google/uuid"
 	"github.com/pacoVK/aws/types"
 	"log"
 	"strings"
-	"github.com/google/uuid"
 )
 
 func getQueues() (*sqs.ListQueuesOutput, error) {
@@ -82,9 +82,10 @@ func DeleteQueue(queueUrl string) (*sqs.DeleteQueueOutput, error) {
 	})
 }
 
-func CreateQueue(queueName string) (*sqs.CreateQueueOutput, error) {
+func CreateQueue(queueName string, attributes *map[string]string) (*sqs.CreateQueueOutput, error) {
 	return sqsClient.CreateQueue(context.TODO(), &sqs.CreateQueueInput{
-		QueueName: &queueName,
+		QueueName:  &queueName,
+		Attributes: *attributes,
 	})
 }
 
@@ -94,9 +95,9 @@ func SendMessage(queueUrl string, sqsMessage types.SqsMessage) (*sqs.SendMessage
 		deduplicationId = uuid.New().String()
 	}
 	return sqsClient.SendMessage(context.TODO(), &sqs.SendMessageInput{
-		QueueUrl:    &queueUrl,
-		MessageBody: &sqsMessage.MessageBody,
-		MessageGroupId: &sqsMessage.MessageGroupId,
+		QueueUrl:               &queueUrl,
+		MessageBody:            &sqsMessage.MessageBody,
+		MessageGroupId:         &sqsMessage.MessageGroupId,
 		MessageDeduplicationId: &deduplicationId,
 	})
 }

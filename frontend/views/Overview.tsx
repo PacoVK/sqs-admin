@@ -78,14 +78,11 @@ const Overview = () => {
     }
   };
 
-  const createNewQueue = async (queueName: string) => {
+  const createNewQueue = async (queue: Queue) => {
     await callApi({
       method: "POST",
       action: "CreateQueue",
-      queue: {
-        QueueUrl: "",
-        QueueName: queueName,
-      },
+      queue: queue,
       onSuccess: () => {
         setTimeout(() => {
           triggerReload(!reload);
@@ -125,6 +122,15 @@ const Overview = () => {
   const sendMessageToCurrentQueue = async (message: SqsMessage) => {
     let queueUrl = queues[tabIndex]?.QueueUrl || null;
     if (queueUrl !== null) {
+      if (
+        queues[tabIndex]?.QueueName.endsWith(".fifo") &&
+        !message.messageGroupId
+      ) {
+        setError(
+          "You need to set a MessageGroupID when sending Messages to a FIFO queue"
+        );
+        return;
+      }
       await callApi({
         method: "POST",
         action: "SendMessage",
@@ -163,6 +169,7 @@ const Overview = () => {
         <SendMessageDialog
           disabled={disabledStatus}
           onSubmit={sendMessageToCurrentQueue}
+          queue={queues[tabIndex]}
         />
         <Button
           variant="contained"
