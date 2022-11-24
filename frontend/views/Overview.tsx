@@ -3,13 +3,17 @@ import TabPanel from "../components/TabPanel";
 import {
   Alert as MuiAlert,
   AlertTitle,
-  Box,
   Button,
   Container,
-  Grid,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
   Paper,
-  Tab,
-  Tabs,
+  Toolbar,
   Typography,
 } from "@mui/material";
 import { Queue, SqsMessage } from "../types";
@@ -19,16 +23,18 @@ import useInterval from "../hooks/useInterval";
 import SendMessageDialog from "../components/SendMessageDialog";
 import { callApi } from "../api/Http";
 import MessageItem from "../components/MessageItem";
+import QueueIcon from "@mui/icons-material/CalendarViewWeek";
+import Grid from "@mui/material/Unstable_Grid2";
 
 const a11yProps = (id: string, index: number) => {
   return {
-    key: `queue-${id}-${index}`,
+    key: index,
     "aria-controls": `queue-${id}-${index}`,
   };
 };
 
 const Overview = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const [listItemIndex, setListItemIndex] = useState(0);
   const [queues, setQueues] = useState([] as Queue[]);
   const [messages, setMessages] = useState([] as SqsMessage[]);
   const [reload, triggerReload] = useState(true);
@@ -42,7 +48,7 @@ const Overview = () => {
   useEffect(() => {
     receiveMessageFromCurrentQueue();
     // eslint-disable-next-line
-  }, [queues, tabIndex]);
+  }, [queues, listItemIndex]);
 
   useEffect(() => {
     callApi({
@@ -50,10 +56,10 @@ const Overview = () => {
       onSuccess: (data: Queue[]) => {
         setQueues(data);
         if (data.length > 0) {
-          setTabIndex(data.length - 1);
+          setListItemIndex(data.length - 1);
           setDisabledStatus(false);
         } else {
-          setTabIndex(0);
+          setListItemIndex(0);
           setDisabledStatus(true);
         }
       },
@@ -61,17 +67,17 @@ const Overview = () => {
     });
   }, [reload]);
 
-  const handleChange = (event: React.SyntheticEvent, newTabIndex: number) => {
-    setTabIndex(newTabIndex);
+  const selectQueue = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    setListItemIndex(event.currentTarget.value);
   };
 
   const receiveMessageFromCurrentQueue = async () => {
-    let queueUrl = queues[tabIndex]?.QueueUrl || null;
+    let queueUrl = queues[listItemIndex]?.QueueUrl || null;
     if (queueUrl != null) {
       await callApi({
         method: "POST",
         action: "GetMessages",
-        queue: queues[tabIndex],
+        queue: queues[listItemIndex],
         onSuccess: setMessages,
         onError: setError,
       });
@@ -96,7 +102,7 @@ const Overview = () => {
     await callApi({
       method: "POST",
       action: "PurgeQueue",
-      queue: queues[tabIndex],
+      queue: queues[listItemIndex],
       onSuccess: () => {
         setMessages([]);
       },
@@ -108,7 +114,7 @@ const Overview = () => {
     await callApi({
       method: "POST",
       action: "DeleteQueue",
-      queue: queues[tabIndex],
+      queue: queues[listItemIndex],
       onSuccess: () => {
         setMessages([]);
         setTimeout(() => {
@@ -120,10 +126,10 @@ const Overview = () => {
   };
 
   const sendMessageToCurrentQueue = async (message: SqsMessage) => {
-    let queueUrl = queues[tabIndex]?.QueueUrl || null;
+    let queueUrl = queues[listItemIndex]?.QueueUrl || null;
     if (queueUrl !== null) {
       if (
-        queues[tabIndex]?.QueueName.endsWith(".fifo") &&
+        queues[listItemIndex]?.QueueName.endsWith(".fifo") &&
         !message.messageGroupId
       ) {
         setError(
@@ -134,7 +140,7 @@ const Overview = () => {
       await callApi({
         method: "POST",
         action: "SendMessage",
-        queue: queues[tabIndex],
+        queue: queues[listItemIndex],
         message: message,
         onSuccess: () => {},
         onError: setError,
@@ -145,92 +151,129 @@ const Overview = () => {
   };
 
   return (
-    <>
-      <Container maxWidth="md" sx={{ marginY: "15px" }}>
-        <Typography variant="h4">SQS Admin UI</Typography>
-      </Container>
-      <Container
-        maxWidth="md"
-        sx={{
-          marginY: "15px",
-          display: "grid",
-          gap: 1,
-          gridTemplateColumns: "repeat(4, 1fr)",
-        }}
-      >
-        <CreateQueueDialog onSubmit={createNewQueue} />
-        <Button
-          variant="contained"
-          disabled={disabledStatus}
-          onClick={deleteCurrentQueue}
+    <Grid container spacing={0}>
+      <Grid xs={3}>
+        <Drawer
+          sx={{
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box"
+            },
+          }}
+          variant="permanent"
+          anchor="left"
         >
-          Delete Queue
-        </Button>
-        <SendMessageDialog
-          disabled={disabledStatus}
-          onSubmit={sendMessageToCurrentQueue}
-          queue={queues[tabIndex]}
-        />
-        <Button
-          variant="contained"
-          disabled={disabledStatus}
-          onClick={purgeCurrentQueue}
-        >
-          Purge Queue
-        </Button>
-      </Container>
-      {error !== "" ? (
-        <Container maxWidth="md">
-          <Alert
-            message={error}
-            severity={"error"}
-            onClose={() => setError("")}
-          />
-        </Container>
-      ) : null}
-      {queues?.length === 0 ? (
-        <Container maxWidth="md">
-          <MuiAlert severity="info">
-            <AlertTitle>No Queue</AlertTitle>
-            No Queues exist in region (default was "eu-central-1")
-          </MuiAlert>
-        </Container>
-      ) : (
-        <Container maxWidth="md">
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={tabIndex}
-              onChange={handleChange}
-              aria-label="SQS overview"
-            >
-              {queues?.map((queue, index) => (
-                <Tab label={queue.QueueName} {...a11yProps("tab", index)} />
-              ))}
-            </Tabs>
-          </Box>
-          {queues?.map((queue, index) => (
-            <TabPanel
-              value={tabIndex}
-              index={index}
-              {...a11yProps("tabpanel", index)}
-            >
-              <Grid container spacing={2}>
-                {messages?.map((message, index) => (
-                  <Grid item xs={12} {...a11yProps("gridItem", index)}>
-                    <Paper>
-                      <MessageItem
-                        data={message}
-                        {...a11yProps("messageItem", index)}
-                      />
-                    </Paper>
-                  </Grid>
-                ))}
-              </Grid>
-            </TabPanel>
-          ))}
-        </Container>
-      )}
-    </>
+          <List>
+            <ListItem>
+              <Typography variant="h6" margin={"auto"}>
+                SQS Admin UI
+              </Typography>
+            </ListItem>
+            <ListItem>
+              <Toolbar
+                sx={{
+                  gap: 1,
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                }}
+              >
+                <CreateQueueDialog onSubmit={createNewQueue} />
+                <Button
+                  variant="contained"
+                  disabled={disabledStatus}
+                  onClick={deleteCurrentQueue}
+                >
+                  Delete Queue
+                </Button>
+                <SendMessageDialog
+                  disabled={disabledStatus}
+                  onSubmit={sendMessageToCurrentQueue}
+                  queue={queues[listItemIndex]}
+                />
+                <Button
+                  variant="contained"
+                  disabled={disabledStatus}
+                  onClick={purgeCurrentQueue}
+                >
+                  Purge Queue
+                </Button>
+              </Toolbar>
+            </ListItem>
+          </List>
+          <Divider />
+          <Divider />
+          <List>
+            {queues?.map((queue, index) => (
+              <ListItem
+                {...a11yProps("item", index)}
+                onClick={selectQueue}
+                value={index}
+                disablePadding
+              >
+                <ListItemButton selected={index === listItemIndex}>
+                  <ListItemIcon>
+                    <QueueIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={queue.QueueName} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+      </Grid>
+      <Grid xs={9}>
+        <Grid container spacing={0}>
+          <Grid xs={9}>
+            <Toolbar>
+              <Typography variant="h6" margin={"auto"}>
+                Messages
+              </Typography>
+            </Toolbar>
+          </Grid>
+          <Grid xs={9}>
+            {error !== "" ? (
+              <Container maxWidth="md">
+                <Alert
+                  message={error}
+                  severity={"error"}
+                  onClose={() => setError("")}
+                />
+              </Container>
+            ) : null}
+            {queues?.length === 0 ? (
+              <Container maxWidth="md">
+                <MuiAlert severity="info">
+                  <AlertTitle>No Queue</AlertTitle>
+                  No Queues exist in region (default was "eu-central-1")
+                </MuiAlert>
+              </Container>
+            ) : null}
+          </Grid>
+          <Grid xs={9}>
+            {queues?.map((queue, index) => (
+              <TabPanel
+                value={listItemIndex}
+                index={index}
+                {...a11yProps("tabpanel", index)}
+              >
+                <Grid container spacing={2}>
+                  {messages?.map((message, index) => (
+                    <Grid xs={12} {...a11yProps("gridItem", index)}>
+                      <Paper>
+                        <MessageItem
+                          data={message}
+                          {...a11yProps("messageItem", index)}
+                        />
+                      </Paper>
+                    </Grid>
+                  ))}
+                </Grid>
+              </TabPanel>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
