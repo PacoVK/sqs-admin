@@ -43,7 +43,7 @@
     "@types/jest": "^29.2.3",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.8",
+    "@types/react-dom": "^18.0.9",
     "chokidar": "^3.5.3",
     "esbuild": "^0.15.13",
     "live-server": "^1.2.2",
