@@ -60,7 +60,7 @@ const CreateQueueDialog = (props: CreateQueueDialogProps) => {
       <Button variant="contained" onClick={handleClickOpen}>
         Create Queue
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog fullWidth open={open} onClose={handleClose}>
         <DialogTitle>Create new SQS</DialogTitle>
         <DialogContent>
           <DialogContentText>

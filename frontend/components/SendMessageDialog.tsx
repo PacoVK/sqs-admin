@@ -50,7 +50,7 @@ const SendMessageDialog = (props: SendMessageDialogProps) => {
       >
         Send message
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog fullWidth open={open} onClose={handleClose}>
         <DialogTitle>Send message</DialogTitle>
         <DialogContent>
           <DialogContentText>Please provide a message body.</DialogContentText>
