@@ -14,7 +14,8 @@
     "@mui/icons-material": "^5.10.15",
     "@mui/material": "^5.10.15",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-json-tree": "^0.17.0"
   },
   "scripts": {
     "start": "node esbuild/serve.js",

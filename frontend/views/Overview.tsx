@@ -157,7 +157,7 @@ const Overview = () => {
           sx={{
             flexShrink: 0,
             "& .MuiDrawer-paper": {
-              boxSizing: "border-box"
+              boxSizing: "border-box",
             },
           }}
           variant="permanent"
