@@ -8,7 +8,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import { SendMessageDialogProps } from "../types";
+import { SendMessageDialogProps, SqsMessage } from "../types";
 
 const SendMessageDialog = (props: SendMessageDialogProps) => {
   const [open, setOpen] = useState(false);
@@ -34,10 +34,15 @@ const SendMessageDialog = (props: SendMessageDialogProps) => {
   };
 
   const submitSendRequest = () => {
-    props.onSubmit({
+    let sqsMessage: SqsMessage = {
       messageBody: messageBody,
-      messageGroupId: messageGroupId === "" ? undefined : messageGroupId,
-    });
+    };
+    if (messageGroupId !== "") {
+      sqsMessage.messageAttributes = {
+        MessageGroupId: messageGroupId,
+      };
+    }
+    props.onSubmit(sqsMessage);
     handleClose();
   };
 
@@ -50,7 +55,7 @@ const SendMessageDialog = (props: SendMessageDialogProps) => {
       >
         Send message
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog fullWidth open={open} onClose={handleClose}>
         <DialogTitle>Send message</DialogTitle>
         <DialogContent>
           <DialogContentText>Please provide a message body.</DialogContentText>

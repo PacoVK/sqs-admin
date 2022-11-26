@@ -90,14 +90,15 @@ func CreateQueue(queueName string, attributes *map[string]string) (*sqs.CreateQu
 }
 
 func SendMessage(queueUrl string, sqsMessage types.SqsMessage) (*sqs.SendMessageOutput, error) {
-	deduplicationId := sqsMessage.MessageGroupId
-	if len(deduplicationId) > 0 {
-		deduplicationId = uuid.New().String()
+	messageGroupId, hasMessageGroupId := sqsMessage.MessageAttributes["MessageGroupId"]
+	sendMessageInput := sqs.SendMessageInput{
+		QueueUrl:       &queueUrl,
+		MessageBody:    &sqsMessage.MessageBody,
+		MessageGroupId: &messageGroupId,
 	}
-	return sqsClient.SendMessage(context.TODO(), &sqs.SendMessageInput{
-		QueueUrl:               &queueUrl,
-		MessageBody:            &sqsMessage.MessageBody,
-		MessageGroupId:         &sqsMessage.MessageGroupId,
-		MessageDeduplicationId: &deduplicationId,
-	})
+	if hasMessageGroupId {
+		messageDeduplicationId := uuid.New().String()
+		sendMessageInput.MessageDeduplicationId = &messageDeduplicationId
+	}
+	return sqsClient.SendMessage(context.TODO(), &sendMessageInput)
 }
