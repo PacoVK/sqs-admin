@@ -27,7 +27,14 @@ const MessageItem = (props: { data: SqsMessage }) => {
           )}, Received at: ${toLocaleString(
             // @ts-ignore
             props.data.messageAttributes.ApproximateFirstReceiveTimestamp
-          )}`}
+          )}
+          ${
+            props.data.messageAttributes?.MessageGroupId
+              ? `, MessageGroupId: ${props.data.messageAttributes?.MessageGroupId},
+              DeduplicationId: ${props.data.messageAttributes?.MessageDeduplicationId}`
+              : ""
+          }
+          `}
         />
         <CardContent>
           <JSONTree

@@ -31,8 +31,17 @@ export interface Queue {
 export interface SqsMessage {
   messageBody: string;
   messageId?: string;
-  messageAttributes?: { [key: string]: string } | undefined;
-  messageGroupId?: string;
+  messageAttributes?:
+    | {
+        ApproximateFirstReceiveTimestamp?: string;
+        ApproximateReceiveCount?: string;
+        MessageDeduplicationId?: string;
+        MessageGroupId?: string;
+        SenderId?: string;
+        SentTimestamp?: string;
+        SequenceNumber?: string;
+      }
+    | undefined;
 }
 
 export interface ApiCall {
