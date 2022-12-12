@@ -37,6 +37,9 @@ To configure the backend for local development you can set the following environ
 | --------- | ------------------------------------------------------ | ------- |
 | HTTP_PORT | Port that the internal backend binds to and is serving | 3999    |
 
+Designed to work with 
+![Localstack](https://raw.githubusercontent.com/localstack/.github/main/assets/localstack-readme-banner.svg)
+
 ### Legal note
 
 UI favicon by [John Sorrentino](https://favicon.io/emoji-favicons/cowboy-hat-face)
