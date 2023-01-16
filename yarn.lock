@@ -2241,10 +2241,10 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
-"@types/lodash@^4.14.178", "@types/lodash@^4.14.182":
-  version "4.14.190"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.190.tgz#d8e99647af141c63902d0ca53cf2b34d2df33545"
-  integrity sha512-5iJ3FBJBvQHQ8sFhEhJfjUP+G+LalhavTkYyrAYqz5MEJG+erSv0k9KJLb6q7++17Lafk1scaTIFXcMJlwK8Mw==
+"@types/lodash@^4.14.178", "@types/lodash@^4.14.191":
+  version "4.14.191"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.191.tgz#09511e7f7cba275acd8b419ddac8da9a6a79e2fa"
+  integrity sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==
 
 "@types/mime@*":
   version "3.0.1"
@@ -8319,15 +8319,13 @@ react-is@^18.0.0, react-is@^18.2.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-json-tree@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/react-json-tree/-/react-json-tree-0.17.0.tgz#aca02cb8c2d3d944e128763c5d814bafa92511d4"
-  integrity sha512-hcWjibI/fAvsKnfYk+lka5OrE1Lvb1jH5pSnFhIU5T8cCCxB85r6h/NOzDPggSSgErjmx4rl3+2EkeclIKBOhg==
+react-json-tree@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/react-json-tree/-/react-json-tree-0.18.0.tgz#3c4bec7b091f50dcc9c09652d89c8f4373ebf3ea"
+  integrity sha512-Qe6HKSXrr++n9Y31nkRJ3XvQMATISpqigH1vEKhLwB56+nk5thTP0ITThpjxY6ZG/ubpVq/aEHIcyLP/OPHxeA==
   dependencies:
-    "@babel/runtime" "^7.18.3"
-    "@types/lodash" "^4.14.182"
-    "@types/prop-types" "^15.7.5"
-    prop-types "^15.8.1"
+    "@babel/runtime" "^7.20.6"
+    "@types/lodash" "^4.14.191"
     react-base16-styling "^0.9.1"
 
 react-refresh@^0.11.0:
