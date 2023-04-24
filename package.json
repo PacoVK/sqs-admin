@@ -48,7 +48,7 @@
     "chokidar": "^3.5.3",
     "esbuild": "^0.17.12",
     "live-server": "^1.2.2",
-    "prettier": "2.8.6",
+    "prettier": "2.8.8",
     "react-scripts": "5.0.1",
     "typescript": "^5.0.2"
   }
