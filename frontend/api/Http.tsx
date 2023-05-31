@@ -1,8 +1,7 @@
 import { ApiCall } from "../types";
-import config from "../config.json";
 
 const callApi = async (apiCall: ApiCall) => {
-  fetch(`${config.apiEndpoint}/sqs`, {
+  fetch("/sqs", {
     method: apiCall.method,
     headers: {
       Accept: "application/json",
