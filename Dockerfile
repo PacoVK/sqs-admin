@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm install && npm run build
+RUN yarn install && yarn build
 
 FROM golang:alpine AS GOLANG_BUILDER
 
