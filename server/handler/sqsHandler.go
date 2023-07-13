@@ -35,7 +35,6 @@ func SQSHandler() Handler {
 						Error:   err,
 					})
 				case "SendMessage":
-					log.Printf("Send message to queue [%v]", payload.SqsQueue.QueueName)
 					_, err := aws.SendMessage(payload.SqsQueue.QueueUrl, payload.SqsMessage)
 					checkForErrorAndRespondJSON(&writer, Response{
 						Payload: nil,

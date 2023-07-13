@@ -18,9 +18,10 @@
     "react-json-tree": "^0.18.0"
   },
   "scripts": {
-    "start": "node esbuild/serve.js",
+    "start": "node esbuild/serve.mjs",
     "build": "node esbuild/build.js",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +42,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.4.1",
     "@types/react": "^18.2.14",
@@ -48,7 +51,7 @@
     "chokidar": "^3.5.3",
     "esbuild": "^0.18.11",
     "live-server": "^1.2.2",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "react-scripts": "5.0.1",
     "typescript": "^5.1.6"
   }

@@ -1,7 +1,9 @@
 import { ApiCall } from "../types";
 
 const callApi = async (apiCall: ApiCall) => {
-  fetch("/sqs", {
+  const baseUrl =
+    process.env.NODE_ENV === "development" ? "http://localhost:3999" : "";
+  fetch(`${baseUrl}/sqs`, {
     method: apiCall.method,
     headers: {
       Accept: "application/json",
