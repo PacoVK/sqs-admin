@@ -2,6 +2,8 @@ package aws
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 	"github.com/aws/aws-sdk-go-v2/service/sqs"
 	awsTypes "github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	"github.com/google/uuid"
@@ -46,11 +48,12 @@ func ListQueues() []types.SqsQueue {
 
 func receiveMessages(queueUrl *string) (*sqs.ReceiveMessageOutput, error) {
 	return sqsClient.ReceiveMessage(context.TODO(), &sqs.ReceiveMessageInput{
-		QueueUrl:            queueUrl,
-		AttributeNames:      []awsTypes.QueueAttributeName{awsTypes.QueueAttributeNameAll},
-		VisibilityTimeout:   1,
-		MaxNumberOfMessages: 10,
-		WaitTimeSeconds:     1,
+		QueueUrl:              queueUrl,
+		AttributeNames:        []awsTypes.QueueAttributeName{awsTypes.QueueAttributeNameAll},
+		MessageAttributeNames: []string{"All"},
+		VisibilityTimeout:     1,
+		MaxNumberOfMessages:   10,
+		WaitTimeSeconds:       1,
 	})
 }
 
@@ -61,6 +64,18 @@ func GetMessages(queueUrl string) ([]types.SqsMessage, error) {
 		return nil, err
 	}
 	for _, message := range messages.Messages {
+		customAttributes := make(map[string]string)
+		for key, val := range message.MessageAttributes {
+			customAttributes[key] = *val.StringValue
+		}
+		if len(customAttributes) > 0 {
+			jsonString, err := json.Marshal(customAttributes)
+			if err != nil {
+				fmt.Println("Error marshaling map to JSON:", err)
+			}
+			message.Attributes["CustomAttributes"] = string(jsonString)
+		}
+
 		sqsMessages = append(sqsMessages, types.SqsMessage{
 			MessageId:         *message.MessageId,
 			MessageBody:       *message.Body,
@@ -91,6 +106,8 @@ func CreateQueue(queueName string, attributes *map[string]string) (*sqs.CreateQu
 
 func SendMessage(queueUrl string, sqsMessage types.SqsMessage) (*sqs.SendMessageOutput, error) {
 	messageGroupId, hasMessageGroupId := sqsMessage.MessageAttributes["MessageGroupId"]
+	customAttributes, hasCustomAttributes := sqsMessage.MessageAttributes["CustomAttributes"]
+
 	sendMessageInput := sqs.SendMessageInput{
 		QueueUrl:       &queueUrl,
 		MessageBody:    &sqsMessage.MessageBody,
@@ -100,5 +117,29 @@ func SendMessage(queueUrl string, sqsMessage types.SqsMessage) (*sqs.SendMessage
 		messageDeduplicationId := uuid.New().String()
 		sendMessageInput.MessageDeduplicationId = &messageDeduplicationId
 	}
+	if hasCustomAttributes {
+		attributeValues := buildMessageAttributesFromString(customAttributes)
+		sendMessageInput.MessageAttributes = attributeValues
+	}
 	return sqsClient.SendMessage(context.TODO(), &sendMessageInput)
+}
+
+func buildMessageAttributesFromString(customAttributes string) map[string]awsTypes.MessageAttributeValue {
+	attributeValues := make(map[string]awsTypes.MessageAttributeValue)
+	var attributeMap map[string]string
+	err := json.Unmarshal([]byte(customAttributes), &attributeMap)
+	if err != nil {
+		fmt.Println("Error parsing JSON:", err)
+	}
+
+	stringDataType := "String"
+
+	// Iterate over the attribute map and add each key-value pair to the map
+	for key, value := range attributeMap {
+		attributeValues[key] = awsTypes.MessageAttributeValue{
+			DataType:    &stringDataType,
+			StringValue: &value,
+		}
+	}
+	return attributeValues
 }
