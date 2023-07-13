@@ -29,13 +29,13 @@ const CreateQueueDialog = (props: CreateQueueDialogProps) => {
   };
 
   const handleChangeQueueName = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setQueueName(event.target.value);
   };
 
   const handleChangeFifoSwitch = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     enableFifoQueue(event.target.checked);
   };

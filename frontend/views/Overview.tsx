@@ -134,7 +134,7 @@ const Overview = () => {
         !message.messageAttributes?.MessageGroupId
       ) {
         setError(
-          "You need to set a MessageGroupID when sending Messages to a FIFO queue"
+          "You need to set a MessageGroupID when sending Messages to a FIFO queue",
         );
         return;
       }

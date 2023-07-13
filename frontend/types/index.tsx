@@ -40,6 +40,7 @@ export interface SqsMessage {
         SenderId?: string;
         SentTimestamp?: string;
         SequenceNumber?: string;
+        CustomAttributes?: string | { [key: string]: string };
       }
     | undefined;
 }
