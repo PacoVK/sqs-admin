@@ -156,9 +156,10 @@ const Overview = () => {
       <Box>
         <Drawer
           sx={{
-            width: 380,
+            width: 402,
             flexShrink: 0,
             "& .MuiDrawer-paper": {
+              width: 402,
               boxSizing: "border-box",
             },
           }}
@@ -219,7 +220,12 @@ const Overview = () => {
                   <ListItemIcon>
                     <QueueIcon />
                   </ListItemIcon>
-                  <ListItemText primary={queue.QueueName} />
+                  <ListItemText primary={queue.QueueName} primaryTypographyProps={{
+                    style: {
+                      whiteSpace: "pre-wrap",
+                      overflowWrap: "break-word",
+                    }
+                  }} />
                 </ListItemButton>
               </ListItem>
             ))}
