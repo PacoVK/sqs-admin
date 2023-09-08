@@ -59,23 +59,21 @@ const MessageItem = (props: { data: SqsMessage }) => {
                 <Typography>Message Attributes</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {
+                {Object.entries(
                   // @ts-ignore
-                  Object.entries(
-                    JSON.parse(props.data.messageAttributes.CustomAttributes),
-                  ).map(([key, value]) => {
-                    return (
-                      <Box key={key}>
-                        <Divider />
-                        <Stack direction="row" sx={{ ml: 0 }} spacing={2}>
-                          <Typography>Key: {key}</Typography>
-                          <Typography>Value: {value as string}</Typography>
-                        </Stack>
-                        <Divider />
-                      </Box>
-                    );
-                  })
-                }
+                  JSON.parse(props.data.messageAttributes.CustomAttributes),
+                ).map(([key, value]) => {
+                  return (
+                    <Box key={key}>
+                      <Divider />
+                      <Stack direction="row" sx={{ ml: 0 }} spacing={2}>
+                        <Typography>Key: {key}</Typography>
+                        <Typography>Value: {value as string}</Typography>
+                      </Stack>
+                      <Divider />
+                    </Box>
+                  );
+                })}
               </AccordionDetails>
             </Accordion>
           ) : null}

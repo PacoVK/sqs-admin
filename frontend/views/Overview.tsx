@@ -170,6 +170,9 @@ const Overview = () => {
               <Typography variant="h6" margin={"auto"}>
                 SQS Admin UI
               </Typography>
+              <Typography variant="subtitle2" margin={"auto"}>
+                {process.env.REACT_APP_VERSION}
+              </Typography>
             </ListItem>
             <ListItem>
               <Toolbar
