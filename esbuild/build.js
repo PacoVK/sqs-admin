@@ -9,5 +9,8 @@ esbuild
     loader: {
       ".js": "jsx",
     },
+    define: {
+      "process.env.REACT_APP_VERSION": '"v0.5.1"',
+    },
   })
   .catch(() => process.exit(1));

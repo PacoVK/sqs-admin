@@ -5,6 +5,9 @@ const ctx = await esbuild.context({
   entryPoints: ["frontend/index.tsx"],
   minify: false,
   outfile: "public/assets/app.js",
+  define: {
+    "process.env.REACT_APP_VERSION": '"development"',
+  },
 });
 
 await ctx.watch();
