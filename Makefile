@@ -1,4 +1,4 @@
-.PHONY: dev server frontend
+.PHONY: dev server frontend down
 
 dev: server frontend
 
@@ -8,4 +8,7 @@ server:
 
 frontend:
 	yarn start --cwd frontend
+
+down:
+	docker compose -f server/docker-compose.yml down
 

@@ -31,6 +31,9 @@ You can easily configure the Docker Container via the following environment vari
 
 ## Development
 
+
+### Run local environment
+
 To start your local development environment you can run ``make dev``. This will start a local backend (default http://localhost:3999) and the UI (default http://localhost:3000).
 
 To configure the backend for local development you can set the following environment variable:
@@ -38,6 +41,10 @@ To configure the backend for local development you can set the following environ
 | ENV       | Description                                            | Default |
 | --------- | ------------------------------------------------------ | ------- |
 | HTTP_PORT | Port that the internal backend binds to and is serving | 3999    |
+
+### Shutdown local environment
+
+To shutdown your local development environment you can run ``make down``.
 
 ## Designed and tested with
 
