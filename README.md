@@ -9,7 +9,7 @@ A minimal and lightweight UI for managing SQS-Queues for local development e.g. 
 There are already good UIs for SQS, but they are heavy with sizes >100 MB. Most likely because they ship with SQS itself.
 If you choose e.g. Localstack for local development you don't need an additional local SQS setup, as it is already
 provided by Localstack, unfortunately without UI.
-This Alpine based image has a size ~15 MB. You can easily manage and create Queues.
+This Alpine based image has a size ~19 MB. You can easily manage and create Queues.
 
 ## Usage
 
@@ -31,11 +31,24 @@ You can easily configure the Docker Container via the following environment vari
 
 ## Development
 
+
+### Run local environment
+
+To start your local development environment you can run ``make dev``. This will start a local backend (default http://localhost:3999) and the UI (default http://localhost:3000).
+
 To configure the backend for local development you can set the following environment variable:
 
 | ENV       | Description                                            | Default |
 | --------- | ------------------------------------------------------ | ------- |
 | HTTP_PORT | Port that the internal backend binds to and is serving | 3999    |
+
+### Run tests
+
+To run the tests you can run ``make test``. You'll need to shut down your local development environment afterward.
+
+### Shutdown local environment
+
+To shutdown your local development environment you can run ``make down``.
 
 ## Designed and tested with
 
