@@ -42,6 +42,10 @@ To configure the backend for local development you can set the following environ
 | --------- | ------------------------------------------------------ | ------- |
 | HTTP_PORT | Port that the internal backend binds to and is serving | 3999    |
 
+### Run tests
+
+To run the tests you can run ``make test``. You'll need to shut down your local development environment afterward.
+
 ### Shutdown local environment
 
 To shutdown your local development environment you can run ``make down``.
