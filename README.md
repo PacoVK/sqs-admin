@@ -57,6 +57,11 @@ To shutdown your local development environment you can run ``make down``.
 
 ![Localstack](https://raw.githubusercontent.com/localstack/.github/main/assets/localstack-readme-banner.svg)
 
+
+## Contributors ✨
+
+Thanks go to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
 ### Legal note
 
 UI favicon by [John Sorrentino](https://favicon.io/emoji-favicons/cowboy-hat-face)
