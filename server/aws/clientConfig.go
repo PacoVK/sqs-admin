@@ -2,6 +2,7 @@ package aws
 
 import (
 	"context"
+
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
@@ -19,7 +20,11 @@ var localStackResolver = aws.EndpointResolverWithOptionsFunc(func(service, regio
 
 var awsConfig, _ = config.LoadDefaultConfig(context.TODO(),
 	config.WithCredentialsProvider(
-		credentials.NewStaticCredentialsProvider("ACCESS_KEY", "SECRET_KEY", "TOKEN"),
+		credentials.NewStaticCredentialsProvider(
+			utils.GetEnv("SQS_ACCESS_KEY_ID", "ACCESS_KEY"),
+			utils.GetEnv("SQS_SECRET_ACCESS_KEY", "SECRET_KEY"),
+			utils.GetEnv("SQS_SESSION_TOKEN", "TOKEN"),
+		),
 	),
 	config.WithEndpointResolverWithOptions(localStackResolver),
 	config.WithRegion(

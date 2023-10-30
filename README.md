@@ -27,10 +27,13 @@ To start SQS-Admin simply run:
 
 You can easily configure the Docker Container via the following environment variables:
 
-| ENV              | Description                                                    | Default               |
-| ---------------- | -------------------------------------------------------------- | --------------------- |
-| SQS_ENDPOINT_URL | **Endpoint where SQS is running, this one is mostly required** | http://localhost:4566 |
-| SQS_AWS_REGION   | AWS region the client internally uses to interact with SQS     | eu-central-1          |
+| ENV               | Description                                                    | Default               |
+| ----------------- | -------------------------------------------------------------- | --------------------- |
+| SQS_ENDPOINT_URL  | **Endpoint where SQS is running, this one is mostly required** | http://localhost:4566 |
+| SQS_AWS_REGION    | AWS region the client internally uses to interact with SQS     | eu-central-1          |
+| SQS_ACCESS_KEY_ID | The access key ID is used to uniquely identify an AWS account or IAM user when making API requests to AWS services like SQS. | ACCESS_KEY |
+| SQS_SECRET_ACCESS_KEY | The secret access key is used to sign requests to AWS services like SQS. | SECRET_KEY |
+| SQS_SESSION_TOKEN | The session token is used to provide temporary security credentials to AWS services like SQS. | TOKEN |
 
 ## Contributing
 
