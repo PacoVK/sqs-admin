@@ -11,11 +11,18 @@ import (
 )
 
 var localStackResolver = aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
-	return aws.Endpoint{
+	awsEndpoint := aws.Endpoint{
 		PartitionID:   "aws",
-		URL:           utils.GetEnv("SQS_ENDPOINT_URL", "http://localhost:4566"),
 		SigningRegion: utils.GetEnv("SQS_AWS_REGION", "eu-central-1"),
-	}, nil
+	}
+
+	endpointUrl := utils.GetEnv("SQS_ENDPOINT_URL", "")
+
+	if endpointUrl != "" {
+		awsEndpoint.URL = endpointUrl
+	}
+
+	return awsEndpoint, nil
 })
 
 var awsConfig, _ = config.LoadDefaultConfig(context.TODO(),
