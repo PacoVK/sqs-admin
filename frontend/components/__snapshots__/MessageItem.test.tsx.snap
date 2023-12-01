@@ -22,7 +22,7 @@ Object {
             <span
               class="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-nrdprl-MuiTypography-root"
             >
-              Sent on: 1.1.1970, 01:00:02, Received at: Invalid Date
+              Sent on: Invalid Date, Received at: Invalid Date
           
           
             </span>
@@ -99,7 +99,7 @@ Object {
           <span
             class="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-nrdprl-MuiTypography-root"
           >
-            Sent on: 1.1.1970, 01:00:02, Received at: Invalid Date
+            Sent on: Invalid Date, Received at: Invalid Date
           
           
           </span>
