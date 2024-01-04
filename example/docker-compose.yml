@@ -6,7 +6,7 @@ services:
       - "3999:3999"
     environment:
       SQS_ENDPOINT_URL: "http://localstack:4566"
-      AWS_REGION: "eu-central-1"
+      SQS_AWS_REGION: "eu-central-1"
     depends_on:
       - localstack
 
