@@ -46,6 +46,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "adambordas",
+      "name": "Ádám Bordás",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6266706?v=4",
+      "profile": "https://github.com/adambordas",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
