@@ -136,7 +136,7 @@ Object {
                   >
                     No Queue
                   </div>
-                  No Queues exist in region (default was "eu-central-1")
+                  No Queues exist in region eu-central-1 (default is "eu-central-1")
                 </div>
               </div>
             </div>
@@ -280,7 +280,7 @@ Object {
                 >
                   No Queue
                 </div>
-                No Queues exist in region (default was "eu-central-1")
+                No Queues exist in region eu-central-1 (default is "eu-central-1")
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Queue, SqsMessage } from "../types";
+import { AwsRegion, Queue, SqsMessage } from "../types";
 import CreateQueueDialog from "../components/CreateQueueDialog";
 import Alert from "../components/Alert";
 import useInterval from "../hooks/useInterval";
@@ -41,6 +41,7 @@ const Overview = () => {
   const [reload, triggerReload] = useState(true);
   const [error, setError] = useState("");
   const [disabledStatus, setDisabledStatus] = useState(true);
+  const [region, setRegion] = useState<AwsRegion>({ Region: "eu-central-1" });
 
   useInterval(async () => {
     await receiveMessageFromCurrentQueue();
@@ -50,6 +51,10 @@ const Overview = () => {
     receiveMessageFromCurrentQueue();
     // eslint-disable-next-line
   }, [queues, listItemIndex]);
+
+  useEffect(() => {
+    receiveRegion();
+  }, []);
 
   useEffect(() => {
     callApi({
@@ -83,6 +88,15 @@ const Overview = () => {
         onError: setError,
       });
     }
+  };
+
+  const receiveRegion = async () => {
+    await callApi({
+      method: "POST",
+      action: "GetRegion",
+      onSuccess: setRegion,
+      onError: setError,
+    });
   };
 
   const createNewQueue = async (queue: Queue) => {
@@ -143,7 +157,7 @@ const Overview = () => {
         action: "SendMessage",
         queue: queues[listItemIndex],
         message: message,
-        onSuccess: () => {},
+        onSuccess: () => { },
         onError: setError,
       });
     } else {
@@ -254,7 +268,7 @@ const Overview = () => {
             <Container maxWidth="md">
               <MuiAlert severity="info">
                 <AlertTitle>No Queue</AlertTitle>
-                No Queues exist in region (default was "eu-central-1")
+                No Queues exist in region: {region.Region} (default is "eu-central-1")
               </MuiAlert>
             </Container>
           ) : null}

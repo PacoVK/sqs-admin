@@ -2,10 +2,13 @@ package handler
 
 import (
 	"fmt"
-	"github.com/gorilla/mux"
-	"github.com/pacoVK/aws"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/pacoVK/aws"
+	"github.com/pacoVK/aws/types"
+	"github.com/pacoVK/utils"
 )
 
 func WebsiteHandler() http.Handler {
@@ -59,6 +62,13 @@ func SQSHandler() Handler {
 					checkForErrorAndRespondJSON(&writer, Response{
 						Payload: messages,
 						Error:   err,
+					})
+				case "GetRegion":
+					region := utils.GetEnv("AWS_REGION", "eu-central-1")
+					response := types.AwsRegion{Region: region}
+					respondJSON(writer, Response{
+						Payload:    response,
+						StatusCode: http.StatusOK,
 					})
 				default:
 					log.Printf("Unsupported action provided [%v]", payload.Action)
