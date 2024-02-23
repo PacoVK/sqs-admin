@@ -31,6 +31,9 @@ Object {
                   <h6
                     class="MuiTypography-root MuiTypography-subtitle2 css-787bb5-MuiTypography-root"
                   />
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 css-787bb5-MuiTypography-root"
+                  />
                 </li>
                 <li
                   class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
@@ -136,7 +139,7 @@ Object {
                   >
                     No Queue
                   </div>
-                  No Queues exist in region (default was "eu-central-1")
+                  No Queues exist in region: (default is "eu-central-1")
                 </div>
               </div>
             </div>
@@ -172,6 +175,9 @@ Object {
                 >
                   SQS Admin UI
                 </h6>
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 css-787bb5-MuiTypography-root"
+                />
                 <h6
                   class="MuiTypography-root MuiTypography-subtitle2 css-787bb5-MuiTypography-root"
                 />
@@ -280,7 +286,7 @@ Object {
                 >
                   No Queue
                 </div>
-                No Queues exist in region (default was "eu-central-1")
+                No Queues exist in region: (default is "eu-central-1")
               </div>
             </div>
           </div>

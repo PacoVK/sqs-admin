@@ -4,16 +4,17 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
-	"github.com/pacoVK/aws"
-	"github.com/pacoVK/aws/types"
-	"github.com/pacoVK/utils"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"strings"
 	"testing"
+
+	"github.com/gorilla/mux"
+	"github.com/pacoVK/aws"
+	"github.com/pacoVK/aws/types"
+	"github.com/pacoVK/utils"
 )
 
 var router = mux.NewRouter()
@@ -149,6 +150,18 @@ func TestDeleteSqsQueues(t *testing.T) {
 	response := executeRequest(req, router)
 	checkResponseCode(t, http.StatusOK, response.Code)
 	if response.Body.String() != "null" {
+		t.Error("Did not get expected response body, got", response.Body.String())
+	}
+}
+
+func TestGetRegion(t *testing.T) {
+	var s, _ = json.Marshal(types.Request{
+		Action: "GetRegion",
+	})
+	req, _ := http.NewRequest("POST", "/sqs", bytes.NewBuffer(s))
+	response := executeRequest(req, router)
+	checkResponseCode(t, http.StatusOK, response.Code)
+	if !strings.Contains(response.Body.String(), "eu-central-1") {
 		t.Error("Did not get expected response body, got", response.Body.String())
 	}
 }
