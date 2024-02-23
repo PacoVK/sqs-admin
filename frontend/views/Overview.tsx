@@ -95,6 +95,7 @@ const Overview = () => {
       method: "POST",
       action: "GetRegion",
       onSuccess: setRegion,
+      queue: { QueueName: "" } as Queue,
       onError: setError,
     });
   };
