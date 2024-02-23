@@ -189,6 +189,9 @@ const Overview = () => {
               <Typography variant="subtitle2" margin={"auto"}>
                 {process.env.REACT_APP_VERSION}
               </Typography>
+              <Typography variant="subtitle2" margin={"auto"}>
+                {region.region}
+              </Typography>
             </ListItem>
             <ListItem>
               <Toolbar
@@ -269,7 +272,7 @@ const Overview = () => {
             <Container maxWidth="md">
               <MuiAlert severity="info">
                 <AlertTitle>No Queue</AlertTitle>
-                No Queues exist in region: {region.region} (default is "eu-central-1")
+                {`No Queues exist in region: ${region.region ? region.region + " " : ""}(default is "eu-central-1")`}
               </MuiAlert>
             </Container>
           ) : null}
