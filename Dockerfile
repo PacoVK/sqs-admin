@@ -1,4 +1,4 @@
-FROM node:18-alpine AS REACT_BUILDER
+FROM node:20-alpine AS REACT_BUILDER
 
 WORKDIR /usr/src/app
 
