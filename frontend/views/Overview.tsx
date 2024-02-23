@@ -41,7 +41,7 @@ const Overview = () => {
   const [reload, triggerReload] = useState(true);
   const [error, setError] = useState("");
   const [disabledStatus, setDisabledStatus] = useState(true);
-  const [region, setRegion] = useState<AwsRegion>({ Region: "eu-central-1" });
+  const [region, setRegion] = useState({ region: "" } as AwsRegion);
 
   useInterval(async () => {
     await receiveMessageFromCurrentQueue();
@@ -268,7 +268,7 @@ const Overview = () => {
             <Container maxWidth="md">
               <MuiAlert severity="info">
                 <AlertTitle>No Queue</AlertTitle>
-                No Queues exist in region: {region.Region} (default is "eu-central-1")
+                No Queues exist in region: {region.region} (default is "eu-central-1")
               </MuiAlert>
             </Container>
           ) : null}

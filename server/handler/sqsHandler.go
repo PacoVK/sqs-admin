@@ -64,7 +64,7 @@ func SQSHandler() Handler {
 						Error:   err,
 					})
 				case "GetRegion":
-					region := utils.GetEnv("AWS_REGION", "eu-central-1")
+					region := utils.GetEnv("SQS_AWS_REGION", "eu-central-1")
 					response := types.AwsRegion{Region: region}
 					respondJSON(writer, Response{
 						Payload:    response,

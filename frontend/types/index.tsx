@@ -29,7 +29,7 @@ export interface Queue {
 }
 
 export interface AwsRegion {
-  Region: string;
+  region: string;
 }
 
 export interface SqsMessage {
