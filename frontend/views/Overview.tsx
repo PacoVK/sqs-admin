@@ -272,7 +272,7 @@ const Overview = () => {
             <Container maxWidth="md">
               <MuiAlert severity="info">
                 <AlertTitle>No Queue</AlertTitle>
-                {`No Queues exist in region: ${region.region ? region.region + " " : ""}(default is "eu-central-1")`}
+                {`No Queues exist in region: ${region.region ? region.region : "eu-central-1"}`}
               </MuiAlert>
             </Container>
           ) : null}
