@@ -1,7 +1,13 @@
 # SQS-Admin
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+<p>  
+  <a href="https://github.com/PacoVK/sqs-admin/graphs/contributors">
+    <img alt="Contributors" src="https://img.shields.io/github/all-contributors/pacovk/sqs-admin">
+  </a>
+  <a href="https://hub.docker.com/r/pacovk/sqs-admin">
+    <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/pacovk/sqs-admin">
+  </a>
+<p>
 
 A minimal and lightweight UI for managing SQS-Queues for local development e.g. with [Localstack](https://localstack.cloud/).
 
@@ -40,7 +46,7 @@ If you want to contribute to this project, please read the [contribution guideli
 
 ### Run local environment
 
-To start your local development environment you can run ``make dev``. This will start a local backend (default http://localhost:3999) and the UI (default http://localhost:3000).
+To start your local development environment you can run `make dev`. This will start a local backend (default http://localhost:3999) and the UI (default http://localhost:3000).
 
 To configure the backend for local development you can set the following environment variable:
 
@@ -50,20 +56,20 @@ To configure the backend for local development you can set the following environ
 
 ### Run tests
 
-To run the tests you can run ``make test``. You'll need to shut down your local development environment afterward.
+To run the tests you can run `make test`. You'll need to shut down your local development environment afterward.
 
 ### Shutdown local environment
 
-To shutdown your local development environment you can run ``make down``.
+To shutdown your local development environment you can run `make down`.
 
 ## Designed and tested with
 
 ![Localstack](https://raw.githubusercontent.com/localstack/.github/main/assets/localstack-readme-banner.svg)
 
-
 ## Contributors ✨
 
 Thanks go to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
