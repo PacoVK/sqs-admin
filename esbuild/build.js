@@ -10,7 +10,7 @@ esbuild
       ".js": "jsx",
     },
     define: {
-      "process.env.REACT_APP_VERSION": '"v0.5.4"',
+      "process.env.REACT_APP_VERSION": '"v0.6.0"',
     },
   })
   .catch(() => process.exit(1));
