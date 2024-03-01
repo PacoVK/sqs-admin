@@ -1,6 +1,6 @@
 # SQS-Admin
 <p>  
-  <a href="https://github.com/PacoVK/sqs-admin/graphs/contributors">
+  <a href="https://github.com/PacoVK/sqs-admin?tab=readme-ov-file#contributors-">
     <img alt="Contributors" src="https://img.shields.io/github/all-contributors/pacovk/sqs-admin">
   </a>
   <a href="https://hub.docker.com/r/pacovk/sqs-admin">
