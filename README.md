@@ -28,6 +28,10 @@ You probably need to have a SQS up and running somewhere to connect to, e.g. via
 To start SQS-Admin simply run:
 `docker run --rm -p 3999:3999 -e SQS_ENDPOINT_URL=<Endpoint-URL-of-our-SQS> -d pacovk/sqs-admin`
 
+## Compatibility
+
+SQS-Admin >= 0.5.4 does not support Localstack < 2.x. If you need to stick to Localstack 1.x, please use SQS-Admin <= 0.5.3 ([see #928](https://github.com/PacoVK/sqs-admin/issues/928))
+
 ## Configuration
 
 You can easily configure the Docker Container via the following environment variables:
