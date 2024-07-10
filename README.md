@@ -31,6 +31,7 @@ To start SQS-Admin simply run:
 ## Compatibility
 
 SQS-Admin >= 0.5.4 does not support Localstack < 2.x. If you need to stick to Localstack 1.x, please use SQS-Admin <= 0.5.3 ([see #928](https://github.com/PacoVK/sqs-admin/issues/928))
+**Localstack >= 3.5.0** is currently not supported, due to breaking changes. 
 
 ## Configuration
 
