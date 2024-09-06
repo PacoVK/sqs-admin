@@ -11,8 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.19",
-    "@mui/material": "^5.14.19",
+    "@mui/icons-material": "^6.0.2",
+    "@mui/material": "^6.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-json-tree": "^0.18.0"
@@ -42,15 +42,17 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.1.5",
-    "@testing-library/react": "^15.0.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.10",
-    "@types/node": "^20.10.1",
+    "@types/node": "^22.5.4",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
     "chokidar": "^3.5.3",
     "esbuild": "^0.23.0",
+    "jest": "^27.5.1",
     "live-server": "^1.2.2",
     "prettier": "3.3.3",
     "react-scripts": "5.0.1",

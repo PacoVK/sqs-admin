@@ -7,6 +7,7 @@ import {
   Container,
   Divider,
   Drawer,
+  Grid2 as Grid,
   List,
   ListItem,
   ListItemButton,
@@ -24,7 +25,6 @@ import SendMessageDialog from "../components/SendMessageDialog";
 import { callApi } from "../api/Http";
 import MessageItem from "../components/MessageItem";
 import QueueIcon from "@mui/icons-material/CalendarViewWeek";
-import Grid from "@mui/material/Unstable_Grid2";
 import Box from "@mui/material/Box";
 
 const a11yProps = (id: string, index: number) => {
@@ -158,7 +158,7 @@ const Overview = () => {
         action: "SendMessage",
         queue: queues[listItemIndex],
         message: message,
-        onSuccess: () => { },
+        onSuccess: () => {},
         onError: setError,
       });
     } else {
@@ -238,12 +238,15 @@ const Overview = () => {
                   <ListItemIcon>
                     <QueueIcon />
                   </ListItemIcon>
-                  <ListItemText primary={queue.QueueName} primaryTypographyProps={{
-                    style: {
-                      whiteSpace: "pre-wrap",
-                      overflowWrap: "break-word",
-                    }
-                  }} />
+                  <ListItemText
+                    primary={queue.QueueName}
+                    primaryTypographyProps={{
+                      style: {
+                        whiteSpace: "pre-wrap",
+                        overflowWrap: "break-word",
+                      },
+                    }}
+                  />
                 </ListItemButton>
               </ListItem>
             ))}
@@ -251,14 +254,14 @@ const Overview = () => {
         </Drawer>
       </Box>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid xs={12}>
+        <Grid size={{ xs: 12 }}>
           <Toolbar>
             <Typography variant="h6" margin={"auto"}>
               Messages
             </Typography>
           </Toolbar>
         </Grid>
-        <Grid xs={12}>
+        <Grid size={{ xs: 12 }}>
           {error !== "" ? (
             <Container maxWidth="md">
               <Alert
@@ -277,7 +280,7 @@ const Overview = () => {
             </Container>
           ) : null}
         </Grid>
-        <Grid xs={12}>
+        <Grid size={{ xs: 12 }}>
           {queues?.map((queue, index) => (
             <TabPanel
               value={listItemIndex}
@@ -286,7 +289,7 @@ const Overview = () => {
             >
               <Grid container spacing={2}>
                 {messages?.map((message, index) => (
-                  <Grid xs={12} {...a11yProps("gridItem", index)}>
+                  <Grid size={{ xs: 12 }} {...a11yProps("gridItem", index)}>
                     <Paper>
                       <MessageItem
                         data={message}
