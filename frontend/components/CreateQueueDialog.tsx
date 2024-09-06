@@ -48,7 +48,7 @@ const CreateQueueDialog = (props: CreateQueueDialogProps) => {
     const newQueue: Queue = {
       QueueName: sanitizedQueueName,
       QueueAttributes: {
-        FifoQueue: `${isFifoQueue}`,
+        FifoQueue: isFifoQueue ? `${isFifoQueue}` : undefined,
       },
     };
     props.onSubmit(newQueue);
