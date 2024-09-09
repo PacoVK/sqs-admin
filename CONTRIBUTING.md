@@ -9,7 +9,7 @@ To get started with contributing, please follow these steps:
 1. Fork the repository on GitHub by clicking the "Fork" button in the top-right corner of the [SQS-Admin repository page](https://github.com/PacoVK/sqs-admin).
 2. Clone your forked repository to your local machine
 3. Create a new branch for your contribution. Choose a descriptive branch name related to the feature or fix you are working on.
-4. Make your changes and test them thoroughly to ensure they work as expected. 
+4. Make your changes and test them thoroughly to ensure they work as expected.
 5. Open a pull request (PR) on the SQS-Admin repository with a clear title and description of your changes.
 
 ## Testing

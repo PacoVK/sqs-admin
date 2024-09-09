@@ -15,44 +15,42 @@ Object {
             class="MuiDrawer-root MuiDrawer-docked css-sp3crm-MuiDrawer-docked"
           >
             <div
-              class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft css-12i7wg6-MuiPaper-root-MuiDrawer-paper"
+              class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft css-153gm7s-MuiPaper-root-MuiDrawer-paper"
+              style="--Paper-shadow: none;"
             >
               <ul
-                class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+                class="MuiList-root MuiList-padding css-1u169s7-MuiList-root"
               >
                 <li
-                  class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+                  class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-193q0wg-MuiListItem-root"
                 >
                   <h6
-                    class="MuiTypography-root MuiTypography-h6 css-118wxmi-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-h6 css-pswlt8-MuiTypography-root"
                   >
                     SQS Admin UI
                   </h6>
                   <h6
-                    class="MuiTypography-root MuiTypography-subtitle2 css-787bb5-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-subtitle2 css-l9yxov-MuiTypography-root"
                   />
                   <h6
-                    class="MuiTypography-root MuiTypography-subtitle2 css-787bb5-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-subtitle2 css-l9yxov-MuiTypography-root"
                   />
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+                  class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-193q0wg-MuiListItem-root"
                 >
                   <div
-                    class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1n3o16q-MuiToolbar-root"
+                    class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-gwm8eu-MuiToolbar-root"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-142372x-MuiButtonBase-root-MuiButton-root"
                       tabindex="0"
                       type="button"
                     >
                       Create Queue
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-142372x-MuiButtonBase-root-MuiButton-root"
                       disabled=""
                       tabindex="-1"
                       type="button"
@@ -60,7 +58,7 @@ Object {
                       Delete Queue
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-142372x-MuiButtonBase-root-MuiButton-root"
                       disabled=""
                       tabindex="-1"
                       type="button"
@@ -68,7 +66,7 @@ Object {
                       Send message
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-142372x-MuiButtonBase-root-MuiButton-root"
                       disabled=""
                       tabindex="-1"
                       type="button"
@@ -85,7 +83,7 @@ Object {
                 class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
               />
               <ul
-                class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+                class="MuiList-root MuiList-padding css-1u169s7-MuiList-root"
               />
             </div>
           </div>
@@ -94,26 +92,26 @@ Object {
           class="MuiBox-root css-i9gxme"
         >
           <div
-            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-16fnxy3-MuiGrid2-root"
+            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-5glywb-MuiGrid2-root"
           >
             <div
-              class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"
+              class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-95f9g5-MuiToolbar-root"
             >
               <h6
-                class="MuiTypography-root MuiTypography-h6 css-118wxmi-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h6 css-pswlt8-MuiTypography-root"
               >
                 Messages
               </h6>
             </div>
           </div>
           <div
-            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-16fnxy3-MuiGrid2-root"
+            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-5glywb-MuiGrid2-root"
           >
             <div
-              class="MuiContainer-root MuiContainer-maxWidthMd css-xdmu94-MuiContainer-root"
+              class="MuiContainer-root MuiContainer-maxWidthMd css-u4uvlt-MuiContainer-root"
             >
               <div
-                class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-pwcg7p-MuiCollapse-root"
+                class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-wz2cs5-MuiCollapse-root"
                 style="min-height: 0px;"
               >
                 <div
@@ -123,15 +121,16 @@ Object {
                     class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                   >
                     <div
-                      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardError MuiAlert-standard css-18djxyj-MuiPaper-root-MuiAlert-root"
+                      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorError MuiAlert-standardError MuiAlert-standard css-11pj429-MuiPaper-root-MuiAlert-root"
                       role="alert"
+                      style="--Paper-shadow: none;"
                     >
                       <div
                         class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
                       >
                         <svg
                           aria-hidden="true"
-                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1lzspe0-MuiSvgIcon-root"
                           data-testid="ErrorOutlineIcon"
                           focusable="false"
                           viewBox="0 0 24 24"
@@ -151,13 +150,13 @@ Object {
                       >
                         <button
                           aria-label="close"
-                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-1e0d89p-MuiButtonBase-root-MuiIconButton-root"
+                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-18qjhy-MuiButtonBase-root-MuiIconButton-root"
                           tabindex="0"
                           type="button"
                         >
                           <svg
                             aria-hidden="true"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1lzspe0-MuiSvgIcon-root"
                             data-testid="CloseIcon"
                             focusable="false"
                             viewBox="0 0 24 24"
@@ -166,9 +165,6 @@ Object {
                               d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
                             />
                           </svg>
-                          <span
-                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                          />
                         </button>
                       </div>
                     </div>
@@ -177,18 +173,19 @@ Object {
               </div>
             </div>
             <div
-              class="MuiContainer-root MuiContainer-maxWidthMd css-xdmu94-MuiContainer-root"
+              class="MuiContainer-root MuiContainer-maxWidthMd css-u4uvlt-MuiContainer-root"
             >
               <div
-                class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardInfo MuiAlert-standard css-1fuz9qr-MuiPaper-root-MuiAlert-root"
+                class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorInfo MuiAlert-standardInfo MuiAlert-standard css-rxaxkm-MuiPaper-root-MuiAlert-root"
                 role="alert"
+                style="--Paper-shadow: none;"
               >
                 <div
                   class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1lzspe0-MuiSvgIcon-root"
                     data-testid="InfoOutlinedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -202,7 +199,7 @@ Object {
                   class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
                 >
                   <div
-                    class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom MuiAlertTitle-root css-yslrua-MuiTypography-root-MuiAlertTitle-root"
+                    class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom MuiAlertTitle-root css-1hs5ppg-MuiTypography-root-MuiAlertTitle-root"
                   >
                     No Queue
                   </div>
@@ -212,7 +209,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-16fnxy3-MuiGrid2-root"
+            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-5glywb-MuiGrid2-root"
           />
         </div>
       </div>
@@ -229,44 +226,42 @@ Object {
           class="MuiDrawer-root MuiDrawer-docked css-sp3crm-MuiDrawer-docked"
         >
           <div
-            class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft css-12i7wg6-MuiPaper-root-MuiDrawer-paper"
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft css-153gm7s-MuiPaper-root-MuiDrawer-paper"
+            style="--Paper-shadow: none;"
           >
             <ul
-              class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+              class="MuiList-root MuiList-padding css-1u169s7-MuiList-root"
             >
               <li
-                class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+                class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-193q0wg-MuiListItem-root"
               >
                 <h6
-                  class="MuiTypography-root MuiTypography-h6 css-118wxmi-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-h6 css-pswlt8-MuiTypography-root"
                 >
                   SQS Admin UI
                 </h6>
                 <h6
-                  class="MuiTypography-root MuiTypography-subtitle2 css-787bb5-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-subtitle2 css-l9yxov-MuiTypography-root"
                 />
                 <h6
-                  class="MuiTypography-root MuiTypography-subtitle2 css-787bb5-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-subtitle2 css-l9yxov-MuiTypography-root"
                 />
               </li>
               <li
-                class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+                class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-193q0wg-MuiListItem-root"
               >
                 <div
-                  class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1n3o16q-MuiToolbar-root"
+                  class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-gwm8eu-MuiToolbar-root"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-142372x-MuiButtonBase-root-MuiButton-root"
                     tabindex="0"
                     type="button"
                   >
                     Create Queue
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-142372x-MuiButtonBase-root-MuiButton-root"
                     disabled=""
                     tabindex="-1"
                     type="button"
@@ -274,7 +269,7 @@ Object {
                     Delete Queue
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-142372x-MuiButtonBase-root-MuiButton-root"
                     disabled=""
                     tabindex="-1"
                     type="button"
@@ -282,7 +277,7 @@ Object {
                     Send message
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-142372x-MuiButtonBase-root-MuiButton-root"
                     disabled=""
                     tabindex="-1"
                     type="button"
@@ -299,7 +294,7 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
             />
             <ul
-              class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+              class="MuiList-root MuiList-padding css-1u169s7-MuiList-root"
             />
           </div>
         </div>
@@ -308,26 +303,26 @@ Object {
         class="MuiBox-root css-i9gxme"
       >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-16fnxy3-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-5glywb-MuiGrid2-root"
         >
           <div
-            class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"
+            class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-95f9g5-MuiToolbar-root"
           >
             <h6
-              class="MuiTypography-root MuiTypography-h6 css-118wxmi-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-h6 css-pswlt8-MuiTypography-root"
             >
               Messages
             </h6>
           </div>
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-16fnxy3-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-5glywb-MuiGrid2-root"
         >
           <div
-            class="MuiContainer-root MuiContainer-maxWidthMd css-xdmu94-MuiContainer-root"
+            class="MuiContainer-root MuiContainer-maxWidthMd css-u4uvlt-MuiContainer-root"
           >
             <div
-              class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-pwcg7p-MuiCollapse-root"
+              class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-wz2cs5-MuiCollapse-root"
               style="min-height: 0px;"
             >
               <div
@@ -337,15 +332,16 @@ Object {
                   class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                 >
                   <div
-                    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardError MuiAlert-standard css-18djxyj-MuiPaper-root-MuiAlert-root"
+                    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorError MuiAlert-standardError MuiAlert-standard css-11pj429-MuiPaper-root-MuiAlert-root"
                     role="alert"
+                    style="--Paper-shadow: none;"
                   >
                     <div
                       class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
                     >
                       <svg
                         aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1lzspe0-MuiSvgIcon-root"
                         data-testid="ErrorOutlineIcon"
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -365,13 +361,13 @@ Object {
                     >
                       <button
                         aria-label="close"
-                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-1e0d89p-MuiButtonBase-root-MuiIconButton-root"
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-18qjhy-MuiButtonBase-root-MuiIconButton-root"
                         tabindex="0"
                         type="button"
                       >
                         <svg
                           aria-hidden="true"
-                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1lzspe0-MuiSvgIcon-root"
                           data-testid="CloseIcon"
                           focusable="false"
                           viewBox="0 0 24 24"
@@ -380,9 +376,6 @@ Object {
                             d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
                           />
                         </svg>
-                        <span
-                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                        />
                       </button>
                     </div>
                   </div>
@@ -391,18 +384,19 @@ Object {
             </div>
           </div>
           <div
-            class="MuiContainer-root MuiContainer-maxWidthMd css-xdmu94-MuiContainer-root"
+            class="MuiContainer-root MuiContainer-maxWidthMd css-u4uvlt-MuiContainer-root"
           >
             <div
-              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardInfo MuiAlert-standard css-1fuz9qr-MuiPaper-root-MuiAlert-root"
+              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorInfo MuiAlert-standardInfo MuiAlert-standard css-rxaxkm-MuiPaper-root-MuiAlert-root"
               role="alert"
+              style="--Paper-shadow: none;"
             >
               <div
                 class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1lzspe0-MuiSvgIcon-root"
                   data-testid="InfoOutlinedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -416,7 +410,7 @@ Object {
                 class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
               >
                 <div
-                  class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom MuiAlertTitle-root css-yslrua-MuiTypography-root-MuiAlertTitle-root"
+                  class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom MuiAlertTitle-root css-1hs5ppg-MuiTypography-root-MuiAlertTitle-root"
                 >
                   No Queue
                 </div>
@@ -426,7 +420,7 @@ Object {
           </div>
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-16fnxy3-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-5glywb-MuiGrid2-root"
         />
       </div>
     </div>
