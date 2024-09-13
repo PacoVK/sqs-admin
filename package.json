@@ -50,7 +50,7 @@
     "@types/node": "^22.5.4",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
-    "chokidar": "^3.5.3",
+    "chokidar": "^4.0.0",
     "esbuild": "^0.23.0",
     "jest": "^27.5.1",
     "live-server": "^1.2.2",
