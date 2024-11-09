@@ -7,7 +7,7 @@
   <a href="https://hub.docker.com/r/pacovk/sqs-admin">
     <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/pacovk/sqs-admin">
   </a>
-<p>
+</p>
 
 A minimal and lightweight UI for managing SQS-Queues for local development e.g. with [Localstack](https://localstack.cloud/).
 
@@ -27,7 +27,7 @@ A working example can be found in the `example` directory.
 
 You probably need to have a SQS up and running somewhere to connect to, e.g. via Localstack.
 To start SQS-Admin simply run:
-`docker run --rm -p 3999:3999 -e SQS_ENDPOINT_URL=<Endpoint-URL-of-our-SQS> -d pacovk/sqs-admin`
+`docker run --rm -p 3999:3999 -e SQS_ENDPOINT_URL=[Endpoint-URL-of-our-SQS] -d pacovk/sqs-admin`
 
 ### Compatibility
 
