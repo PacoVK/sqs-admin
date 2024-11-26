@@ -54,7 +54,7 @@
     "esbuild": "^0.24.0",
     "jest": "^27.5.1",
     "live-server": "^1.2.2",
-    "prettier": "3.3.3",
+    "prettier": "3.4.1",
     "react-scripts": "5.0.1",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.2"
