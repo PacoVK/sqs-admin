@@ -51,7 +51,7 @@ If you want to contribute to this project, please read the [contribution guideli
 
 ### Run local environment
 
-To start your local development environment you can run `make dev`. This will start a local backend (default http://localhost:3999) and the UI (default http://localhost:3000).
+To start your local development environment you can run `make dev`. This will start a local backend (default http://localhost:3999) and the UI (default http://localhost:5173).
 
 To configure the backend for local development you can set the following environment variable:
 

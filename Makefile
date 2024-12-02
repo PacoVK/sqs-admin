@@ -6,7 +6,7 @@ server: up
 	cd server && go run main.go & cd ..
 
 frontend:
-	yarn start --cwd frontend
+	yarn run dev
 
 up:
 	docker compose -f server/docker-compose.yml up -d

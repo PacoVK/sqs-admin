@@ -187,7 +187,7 @@ const Overview = () => {
                 SQS Admin UI
               </Typography>
               <Typography variant="subtitle2" margin={"auto"}>
-                {process.env.REACT_APP_VERSION}
+                {import.meta.env.VITE_APP_VERSION}
               </Typography>
               <Typography variant="subtitle2" margin={"auto"}>
                 {region.region}
@@ -281,7 +281,7 @@ const Overview = () => {
           ) : null}
         </Grid>
         <Grid size={{ xs: 12 }}>
-          {queues?.map((queue, index) => (
+          {queues?.map((_queue, index) => (
             <TabPanel
               value={listItemIndex}
               index={index}
