@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MessageItem /> spec renders the MessageItem 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-6fm6rz-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1j74uew-MuiPaper-root-MuiCard-root"
         style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
       >
         <div
-          class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+          class="MuiCardHeader-root css-149tc0y-MuiCardHeader-root"
         >
           <div
-            class="MuiCardHeader-content css-1dpseql-MuiCardHeader-content"
+            class="MuiCardHeader-content css-1jkp9bu-MuiCardHeader-content"
           >
             <span
-              class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-ku7d13-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-16xl4zq-MuiTypography-root"
             >
               MessageId: undefined
             </span>
             <span
-              class="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-s619mj-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-1ro85z9-MuiTypography-root"
             >
               Sent on: Invalid Date, Received at: Invalid Date
           
@@ -30,50 +30,30 @@ Object {
           </div>
         </div>
         <div
-          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          class="MuiCardContent-root css-1lt5qva-MuiCardContent-root"
         >
           <div
-            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded Mui-expanded MuiAccordion-gutters css-nt424e-MuiPaper-root-MuiAccordion-root"
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded Mui-expanded MuiAccordion-gutters css-1808mag-MuiPaper-root-MuiAccordion-root"
             style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
           >
             <h3
-              class="MuiAccordion-heading css-rolk5j-MuiAccordion-heading"
+              class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
             >
               <div
-                class="MuiAccordionDetails-root css-pklpxo-MuiAccordionDetails-root"
+                class="MuiAccordionDetails-root css-12gmwtv-MuiAccordionDetails-root"
               >
-                <ul
-                  style="border: 0px; padding: 0px; margin: 0.5em 0px 0.5em 0.125em; list-style: none; background-color: rgb(0, 43, 54);"
-                >
-                  <li
-                    style="padding-top: 0.25em; padding-right: 0px; margin-left: 0.875em; word-wrap: break-word; padding-left: 1.25em; text-indent: -0.5em; word-break: break-all;"
-                  >
-                    <label
-                      style="display: inline-block; color: rgb(38, 139, 210); margin: 0px 0.5em 0px 0px;"
-                    >
-                      <span>
-                        message
-                        :
-                      </span>
-                    </label>
-                    <span
-                      style="color: rgb(133, 153, 0);"
-                    >
-                      "Hello"
-                    </span>
-                  </li>
-                </ul>
+                &lt;div data-testid="mock-json-tree" /&gt;
               </div>
             </h3>
             <div
-              class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-wz2cs5-MuiCollapse-root"
+              class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-qr6njo-MuiCollapse-root"
               style="min-height: 0px;"
             >
               <div
-                class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+                class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
               >
                 <div
-                  class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+                  class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
                 >
                   <div
                     class="MuiAccordion-region"
@@ -89,22 +69,22 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-6fm6rz-MuiPaper-root-MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1j74uew-MuiPaper-root-MuiCard-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <div
-        class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+        class="MuiCardHeader-root css-149tc0y-MuiCardHeader-root"
       >
         <div
-          class="MuiCardHeader-content css-1dpseql-MuiCardHeader-content"
+          class="MuiCardHeader-content css-1jkp9bu-MuiCardHeader-content"
         >
           <span
-            class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-ku7d13-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-16xl4zq-MuiTypography-root"
           >
             MessageId: undefined
           </span>
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-s619mj-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-1ro85z9-MuiTypography-root"
           >
             Sent on: Invalid Date, Received at: Invalid Date
           
@@ -113,50 +93,30 @@ Object {
         </div>
       </div>
       <div
-        class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        class="MuiCardContent-root css-1lt5qva-MuiCardContent-root"
       >
         <div
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded Mui-expanded MuiAccordion-gutters css-nt424e-MuiPaper-root-MuiAccordion-root"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded Mui-expanded MuiAccordion-gutters css-1808mag-MuiPaper-root-MuiAccordion-root"
           style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
         >
           <h3
-            class="MuiAccordion-heading css-rolk5j-MuiAccordion-heading"
+            class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
           >
             <div
-              class="MuiAccordionDetails-root css-pklpxo-MuiAccordionDetails-root"
+              class="MuiAccordionDetails-root css-12gmwtv-MuiAccordionDetails-root"
             >
-              <ul
-                style="border: 0px; padding: 0px; margin: 0.5em 0px 0.5em 0.125em; list-style: none; background-color: rgb(0, 43, 54);"
-              >
-                <li
-                  style="padding-top: 0.25em; padding-right: 0px; margin-left: 0.875em; word-wrap: break-word; padding-left: 1.25em; text-indent: -0.5em; word-break: break-all;"
-                >
-                  <label
-                    style="display: inline-block; color: rgb(38, 139, 210); margin: 0px 0.5em 0px 0px;"
-                  >
-                    <span>
-                      message
-                      :
-                    </span>
-                  </label>
-                  <span
-                    style="color: rgb(133, 153, 0);"
-                  >
-                    "Hello"
-                  </span>
-                </li>
-              </ul>
+              &lt;div data-testid="mock-json-tree" /&gt;
             </div>
           </h3>
           <div
-            class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-wz2cs5-MuiCollapse-root"
+            class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-qr6njo-MuiCollapse-root"
             style="min-height: 0px;"
           >
             <div
-              class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+              class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
             >
               <div
-                class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+                class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
               >
                 <div
                   class="MuiAccordion-region"
