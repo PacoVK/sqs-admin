@@ -1,5 +1,7 @@
 {
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "commit": false,
   "commitType": "docs",
@@ -23,35 +25,54 @@
       "name": "Érico Knapp Lutzer",
       "avatar_url": "https://avatars.githubusercontent.com/u/10657645?v=4",
       "profile": "http://erico.dev.br",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
     },
     {
       "login": "stasadev",
       "name": "Stanislav Zhuk",
       "avatar_url": "https://avatars.githubusercontent.com/u/24270994?v=4",
       "profile": "https://github.com/stasadev",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
     },
     {
       "login": "AlejandroPerez92",
       "name": "Alejandro Perez",
       "avatar_url": "https://avatars.githubusercontent.com/u/112934187?v=4",
       "profile": "https://github.com/AlejandroPerez92",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
     },
     {
       "login": "adambordas",
       "name": "Ádám Bordás",
       "avatar_url": "https://avatars.githubusercontent.com/u/6266706?v=4",
       "profile": "https://github.com/adambordas",
-      "contributions": ["bug"]
+      "contributions": [
+        "bug"
+      ]
     },
     {
       "login": "bhavishyachandra",
       "name": "Bhavishya Chandra Kamineni",
       "avatar_url": "https://avatars.githubusercontent.com/u/10553920?v=4",
       "profile": "https://github.com/bhavishyachandra",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "danielnetop",
+      "name": "Daniel Neto",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10155766?v=4",
+      "profile": "https://www.danielneto.pt",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
