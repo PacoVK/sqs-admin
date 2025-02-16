@@ -87,6 +87,7 @@ Thanks go to these wonderful people ([emoji key](https://allcontributors.org/doc
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AlejandroPerez92"><img src="https://avatars.githubusercontent.com/u/112934187?v=4?s=100" width="100px;" alt="Alejandro Perez"/><br /><sub><b>Alejandro Perez</b></sub></a><br /><a href="https://github.com/PacoVK/sqs-admin/commits?author=AlejandroPerez92" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/adambordas"><img src="https://avatars.githubusercontent.com/u/6266706?v=4?s=100" width="100px;" alt="Ádám Bordás"/><br /><sub><b>Ádám Bordás</b></sub></a><br /><a href="https://github.com/PacoVK/sqs-admin/issues?q=author%3Aadambordas" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bhavishyachandra"><img src="https://avatars.githubusercontent.com/u/10553920?v=4?s=100" width="100px;" alt="Bhavishya Chandra Kamineni"/><br /><sub><b>Bhavishya Chandra Kamineni</b></sub></a><br /><a href="https://github.com/PacoVK/sqs-admin/commits?author=bhavishyachandra" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.danielneto.pt"><img src="https://avatars.githubusercontent.com/u/10155766?v=4?s=100" width="100px;" alt="Daniel Neto"/><br /><sub><b>Daniel Neto</b></sub></a><br /><a href="https://github.com/PacoVK/sqs-admin/commits?author=danielnetop" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
