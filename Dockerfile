@@ -3,6 +3,7 @@ FROM node:22-alpine AS REACT_BUILDER
 WORKDIR /usr/src/app
 
 COPY . .
+RUN corepack enable
 
 RUN yarn install && yarn build
 
