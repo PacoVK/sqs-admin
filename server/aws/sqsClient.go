@@ -4,12 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
+	"strings"
+
 	"github.com/aws/aws-sdk-go-v2/service/sqs"
 	awsTypes "github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	"github.com/google/uuid"
+
 	"github.com/pacoVK/aws/types"
-	"log"
-	"strings"
 )
 
 func getQueues() (*sqs.ListQueuesOutput, error) {
@@ -109,13 +111,13 @@ func SendMessage(queueUrl string, sqsMessage types.SqsMessage) (*sqs.SendMessage
 	customAttributes, hasCustomAttributes := sqsMessage.MessageAttributes["CustomAttributes"]
 
 	sendMessageInput := sqs.SendMessageInput{
-		QueueUrl:       &queueUrl,
-		MessageBody:    &sqsMessage.MessageBody,
-		MessageGroupId: &messageGroupId,
+		QueueUrl:    &queueUrl,
+		MessageBody: &sqsMessage.MessageBody,
 	}
 	if hasMessageGroupId {
-		messageDeduplicationId := uuid.New().String()
+		messageDeduplicationId := uuid.NewString()
 		sendMessageInput.MessageDeduplicationId = &messageDeduplicationId
+		sendMessageInput.MessageGroupId = &messageGroupId
 	}
 	if hasCustomAttributes {
 		attributeValues := buildMessageAttributesFromString(customAttributes)
