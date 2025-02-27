@@ -22,12 +22,50 @@ provided by Localstack, unfortunately without UI.
 
 ## Usage
 
+### Standalone Mode
+
 The most common way to use SQS-Admin would be in conjunction with a `docker-compose.yml`.
 A working example can be found in the `example` directory.
 
 You probably need to have a SQS up and running somewhere to connect to, e.g. via Localstack.
 To start SQS-Admin simply run:
 `docker run --rm -p 3999:3999 -e SQS_ENDPOINT_URL=<Endpoint-URL-of-our-SQS> -d pacovk/sqs-admin`
+
+### LocalStack Extension
+
+SQS-Admin can also be used as a LocalStack extension, which provides a more integrated experience.
+
+#### Option 1: Using Python
+
+1. Install the extension:
+   ```bash
+   pip install localstack-sqs-admin
+   ```
+
+2. Start LocalStack:
+   ```bash
+   localstack start
+   ```
+
+3. Access the SQS Admin UI at http://localhost:4566/_localstack/ext/sqs-admin
+
+For more details, see [README_EXTENSION.md](README_EXTENSION.md).
+
+#### Option 2: Using Docker (No Python Required)
+
+1. Navigate to the docker-extension directory:
+   ```bash
+   cd docker-extension
+   ```
+
+2. Start the service using Docker Compose:
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Access the SQS Admin UI at http://localhost:4566/_localstack/ext/sqs-admin
+
+For more details, see [docker-extension/README.md](docker-extension/README.md).
 
 ## Compatibility
 

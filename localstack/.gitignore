@@ -1,0 +1,7 @@
+.venv
+dist
+build
+**/*.egg-info
+.eggs
+bin/
+!bin/.gitkeep

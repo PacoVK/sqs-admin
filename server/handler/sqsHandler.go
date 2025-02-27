@@ -12,8 +12,18 @@ import (
 )
 
 func WebsiteHandler() http.Handler {
+	// Get base path from environment or use empty string for root
+	basePath := utils.GetEnv("BASE_PATH", "")
+
+	// If no base path, serve directly
+	if basePath == "" {
+		return http.FileServer(http.Dir("../public"))
+	}
+
 	staticDir := utils.GetEnv("SQS_ADMIN_STATIC_DIR", "../public")
-	return http.FileServer(http.Dir(staticDir))
+
+	// If there is a base path, strip it before serving files
+	return http.StripPrefix(basePath, http.FileServer(http.Dir(staticDir)))
 }
 
 func SQSHandler() Handler {

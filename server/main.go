@@ -16,8 +16,30 @@ type App struct {
 
 func (app *App) Initialize() *App {
 	router := mux.NewRouter()
-	handler.SQSHandler().AddRoute(router)
-	router.PathPrefix("/").Handler(handler.WebsiteHandler()).Methods("GET")
+	
+	// Get API prefix from environment variable (for Localstack extension compatibility)
+	apiPrefix := utils.GetEnv("API_PREFIX", "")
+	
+	// Set up API routes with optional prefix
+	if apiPrefix != "" {
+		// For extensions, we might want a specific route
+		apiRouter := router.PathPrefix(apiPrefix).Subrouter()
+		handler.SQSHandler().AddRoute(apiRouter)
+	} else {
+		// Default behavior - use /sqs endpoint
+		handler.SQSHandler().AddRoute(router)
+	}
+	
+	// Get base path from environment
+	basePath := utils.GetEnv("BASE_PATH", "")
+	
+	// Set up static file serving with optional base path
+	if basePath != "" {
+		router.PathPrefix(basePath).Handler(handler.WebsiteHandler()).Methods("GET")
+	} else {
+		router.PathPrefix("/").Handler(handler.WebsiteHandler()).Methods("GET")
+	}
+	
 	app.Router = router
 	return app
 }
