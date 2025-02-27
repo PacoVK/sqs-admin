@@ -53,6 +53,8 @@ If you want to contribute to this project, please read the [contribution guideli
 
 To start your local development environment you can run `make dev`. This will start a local backend (default http://localhost:3999) and the UI (default http://localhost:3000).
 
+The frontend is built with Vite for a faster and more efficient development experience.
+
 To configure the backend for local development you can set the following environment variable:
 
 | ENV       | Description                                            | Default |

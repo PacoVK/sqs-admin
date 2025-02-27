@@ -19,7 +19,7 @@ FROM alpine
 
 WORKDIR /usr/src/app/server
 
-COPY --from=REACT_BUILDER /usr/src/app/public /usr/src/app/public
+COPY --from=REACT_BUILDER /usr/src/app/dist /usr/src/app/public
 
 COPY --from=GOLANG_BUILDER /usr/src/app/sqs-admin ./sqs-admin
 
