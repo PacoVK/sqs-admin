@@ -1,4 +1,4 @@
-FROM node:22-alpine AS REACT_BUILDER
+FROM node:22-alpine AS react_builder
 
 WORKDIR /usr/src/app
 
@@ -7,7 +7,7 @@ RUN corepack enable
 
 RUN yarn install && yarn build
 
-FROM golang:alpine AS GOLANG_BUILDER
+FROM golang:alpine AS golang_builder
 
 WORKDIR /usr/src/app
 
@@ -19,8 +19,8 @@ FROM alpine
 
 WORKDIR /usr/src/app/server
 
-COPY --from=REACT_BUILDER /usr/src/app/dist /usr/src/app/public
+COPY --from=react_builder /usr/src/app/dist /usr/src/app/public
 
-COPY --from=GOLANG_BUILDER /usr/src/app/sqs-admin ./sqs-admin
+COPY --from=golang_builder /usr/src/app/sqs-admin ./sqs-admin
 
 ENTRYPOINT ["./sqs-admin"]
