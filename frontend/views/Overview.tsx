@@ -187,7 +187,7 @@ const Overview = () => {
                 SQS Admin UI
               </Typography>
               <Typography variant="subtitle2" margin={"auto"}>
-                {process.env.REACT_APP_VERSION}
+                {import.meta.env.REACT_APP_VERSION}
               </Typography>
               <Typography variant="subtitle2" margin={"auto"}>
                 {region.region}
