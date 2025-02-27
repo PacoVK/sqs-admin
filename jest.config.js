@@ -3,9 +3,12 @@ export default {
   roots: ["<rootDir>/frontend"],
   testMatch: ["**/*.test.tsx"],
   transform: {
-    "^.+\\.tsx?$": ["ts-jest", {
-      useESM: true,
-    }],
+    "^.+\\.tsx?$": [
+      "ts-jest",
+      {
+        useESM: true,
+      },
+    ],
   },
   extensionsToTreatAsEsm: [".ts", ".tsx"],
   moduleNameMapper: {
