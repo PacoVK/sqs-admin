@@ -6,7 +6,7 @@ RUN corepack enable && yarn install --frozen-lockfile
 RUN yarn build
 
 # Build Go binary with minimal dependencies
-FROM golang:1.22-alpine AS golang_builder
+FROM golang:1.24-alpine AS golang_builder
 WORKDIR /app
 COPY server/ ./
 # Install build dependencies and build with CGO disabled for static binary
