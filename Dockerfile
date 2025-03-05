@@ -1,26 +1,32 @@
+# Build frontend assets
 FROM node:22-alpine AS react_builder
-
-WORKDIR /usr/src/app
-
+WORKDIR /app
 COPY . .
-RUN corepack enable
+RUN corepack enable && yarn install --frozen-lockfile
+RUN yarn build
 
-RUN yarn install && yarn build
+# Build Go binary with minimal dependencies
+FROM golang:1.22-alpine AS golang_builder
+WORKDIR /app
+COPY server/ ./
+# Install build dependencies and build with CGO disabled for static binary
+RUN apk add --no-cache ca-certificates git && \
+    CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o sqs-admin .
 
-FROM golang:alpine AS golang_builder
+# Final minimal image
+FROM scratch
+WORKDIR /app
 
-WORKDIR /usr/src/app
+ENV SQS_ADMIN_STATIC_DIR=/app/public
 
-COPY server .
+# Copy CA certificates for HTTPS connections
+COPY --from=golang_builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-RUN go build -o sqs-admin .
+# Copy compiled assets from previous stages
+COPY --from=react_builder /app/dist /app/public
+COPY --from=golang_builder /app/sqs-admin /app/
 
-FROM alpine
+# Run as non-root (nobody)
+USER 65534:65534
 
-WORKDIR /usr/src/app/server
-
-COPY --from=react_builder /usr/src/app/dist /usr/src/app/public
-
-COPY --from=golang_builder /usr/src/app/sqs-admin ./sqs-admin
-
-ENTRYPOINT ["./sqs-admin"]
+ENTRYPOINT ["/app/sqs-admin"]

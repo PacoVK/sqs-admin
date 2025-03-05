@@ -12,7 +12,8 @@ import (
 )
 
 func WebsiteHandler() http.Handler {
-	return http.FileServer(http.Dir("../public"))
+	staticDir := utils.GetEnv("SQS_ADMIN_STATIC_DIR", "../public")
+	return http.FileServer(http.Dir(staticDir))
 }
 
 func SQSHandler() Handler {
