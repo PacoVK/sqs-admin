@@ -33,7 +33,7 @@ export default defineConfig({
   // 2. Updated environment variable handling to use Vite's approach
   define: {
     "import.meta.env.REACT_APP_VERSION": JSON.stringify(
-      process.env.NODE_ENV === "production" ? "v0.6.2" : "development",
+      process.env.NODE_ENV === "production" ? "v0.7.0" : "development",
     ),
   },
 });
