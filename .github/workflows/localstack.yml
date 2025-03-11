@@ -22,7 +22,7 @@ jobs:
       - name: Upload frontend artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: frontend
+          name: dist
           path: dist/
   server:
     runs-on: ubuntu-latest
@@ -90,9 +90,9 @@ jobs:
         run: |
           mkdir -p localstack/sqs_admin/bin/
           cp -r artifacts/* localstack/sqs_admin/bin/
-          cp -r artifacts/frontend localstack/sqs_admin/bin/dist
-          ls -lah localstack/sqs_admin/bin/
-          ls -lah localstack/sqs_admin/bin/dist
+          
+          # Permission loss fix 
+          chmod +x localstack/sqs_admin/bin/*/*-admin
 
       - name: Build Python package
         working-directory: localstack
