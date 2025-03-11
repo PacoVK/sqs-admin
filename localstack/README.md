@@ -21,7 +21,7 @@ localstack extensions install "git+https://github.com/pacovk/sqs-admin/#egg=sqs-
 
 Navigate to http://sqs-admin.localhost.localstack.cloud:4566.
 
-![Sqs-Admin](https://github.com/user-attachments/assets/60f775c6-bc4a-40c1-96dc-7bcd9a0ae66a)
+![Sqs-Admin](https://github.com/user-attachments/assets/08b05da2-8319-4370-9d7b-d9518b0ee054)
 
 ## Develop
 
