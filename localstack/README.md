@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c9e57d75-e3d9-4658-97a5-1cbf47c267bf)SQS-Admin
+SQS-Admin
 ===============================
 
 [![Install LocalStack Extension](https://cdn.localstack.cloud/gh/extension-badge.svg)](https://app.localstack.cloud/extensions/remote?url=git+https://github.com/PacoVK/sqs-admin/#egg=sqs-admin)
