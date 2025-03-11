@@ -6,6 +6,7 @@ import typing as t
 from localstack.extensions.patterns.webapp import WebAppExtension
 
 from .app import App
+from .util import get_system
 
 LOG = logging.getLogger(__name__)
 
@@ -24,7 +25,7 @@ class SqsAdmin(WebAppExtension):
         """Init required paths"""
         binary_name = "sqs-admin"
         self.bin_dir = os.path.join(os.path.dirname(__file__), "bin")
-        self.binary_path = os.path.join(self.bin_dir, binary_name)
+        self.binary_path = os.path.join(self.bin_dir, get_system(), binary_name)
 
     def _init_environment(self):
         """Init required environment variables"""
