@@ -63,7 +63,7 @@ jobs:
           if [ "${{ matrix.goamd64 }}" != "" ]; then export GOAMD64=${{ matrix.goamd64 }}; fi
           if [ "${{ matrix.goarm64 }}" != "" ]; then export GOARM64=${{ matrix.goarm64 }}; fi
           
-          go build -o ../localstack/sqs_admin/bin/${{ matrix.target_dir }}/sqs-admin .
+          go build -buildvcs=false -o ../localstack/sqs_admin/bin/${{ matrix.target_dir }}/sqs-admin .
       - name: Upload binaries as artifacts
         uses: actions/upload-artifact@v4
         with:
