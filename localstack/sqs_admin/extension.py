@@ -31,7 +31,7 @@ class SqsAdmin(WebAppExtension):
         """Init required environment variables"""
         env = os.environ.copy()
         env["SQS_ENDPOINT_URL"] = "http://localhost:4566"
-        env["SQS_ADMIN_STATIC_DIR"] = os.path.join(self.bin_dir, "../dist")
+        env["SQS_ADMIN_STATIC_DIR"] = os.path.join(self.bin_dir, "dist")
         env["HTTP_PORT"] = str(self.port)
         return env
 
