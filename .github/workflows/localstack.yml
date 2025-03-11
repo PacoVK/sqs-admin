@@ -99,7 +99,8 @@ jobs:
           make dist
 
       - name: Upload package artifact
+        working-directory: localstack
         uses: actions/upload-artifact@v4
         with:
-          name: python-package
+          name: extension
           path: dist/
