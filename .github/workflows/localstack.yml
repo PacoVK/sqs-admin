@@ -91,6 +91,8 @@ jobs:
           mkdir -p localstack/sqs_admin/bin/
           cp -r artifacts/binaries-* localstack/sqs_admin/bin/
           cp -r artifacts/frontend localstack/sqs_admin/bin/dist
+          ls -lah localstack/sqs_admin/bin/
+          ls -lah localstack/sqs_admin/bin/dist
 
       - name: Build Python package
         working-directory: localstack
@@ -101,5 +103,5 @@ jobs:
       - name: Upload package artifact
         uses: actions/upload-artifact@v4
         with:
-          name: python-package
+          name: extension
           path: localstack/dist
