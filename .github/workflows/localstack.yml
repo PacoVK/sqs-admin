@@ -93,6 +93,7 @@ jobs:
           cp -r artifacts/frontend localstack/sqs_admin/bin/dist
 
       - name: Build Python package
+        working-directory: localstack
         run: |
           make install
           make dist
