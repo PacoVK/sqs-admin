@@ -1,2 +1,2 @@
-include sqs_admin/bin/*
+include sqs_admin/bin *
 include README.md
