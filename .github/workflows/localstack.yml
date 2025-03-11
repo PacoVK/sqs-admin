@@ -67,7 +67,7 @@ jobs:
       - name: Upload binaries as artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: binaries-${{ matrix.target_dir }}
+          name: sqs-admin-${{ matrix.target_dir }}
           path: localstack/sqs_admin/bin/${{ matrix.target_dir }}/
 
   package:
@@ -89,7 +89,7 @@ jobs:
       - name: Organize artifacts
         run: |
           mkdir -p localstack/sqs_admin/bin/
-          cp -r artifacts/binaries-* localstack/sqs_admin/bin/
+          cp -r artifacts/sqs-admin-* localstack/sqs_admin/bin/
           cp -r artifacts/frontend localstack/sqs_admin/bin/dist
           ls -lah localstack/sqs_admin/bin/
           ls -lah localstack/sqs_admin/bin/dist
