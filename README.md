@@ -9,6 +9,8 @@
   </a>
 </p>
 
+[![Install LocalStack Extension](https://cdn.localstack.cloud/gh/extension-badge.svg)](https://app.localstack.cloud/extensions/remote?url=git+https://github.com/PacoVK/sqs-admin/#egg=sqs-admin)
+
 A minimal and lightweight UI for managing SQS-Queues for local development e.g. with [Localstack](https://localstack.cloud/).
 
 ![Sqs-Admin](screenshot.png)

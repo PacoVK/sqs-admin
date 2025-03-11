@@ -1,23 +1,28 @@
 SQS-Admin
 ===============================
 
+[![Install LocalStack Extension](https://cdn.localstack.cloud/gh/extension-badge.svg)](https://app.localstack.cloud/extensions/remote?url=git+https://github.com/PacoVK/sqs-admin/#egg=sqs-admin)
+
 The LocalStack SQS-Admin extension is a simple, yet powerful UI to manage and interact with your SQS queues in LocalStack. 
 
 ## Get started
 
 ### Install
 
-Tbd
+Start LocalStack and click the LocalStack Extension badge on the top of the README.
 
 Alternatively, you can install the extension via the CLI directly from this repository:
 
 ```bash
-localstack extensions install "git+https://github.com/pacovk/sqs-adminr/#egg=sqs-admin"
+localstack extensions install "git+https://github.com/pacovk/sqs-admin/#egg=sqs-admin"
 ```
 
 ### Use the extension
 
 Navigate to http://sqs-admin.localhost.localstack.cloud:4566.
+
+![Sqs-Admin](../screenshot.png)
+
 
 ## Develop
 
