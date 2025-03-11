@@ -24,6 +24,7 @@ jobs:
         with:
           name: dist
           path: dist/
+          retention-days: 1
   server:
     runs-on: ubuntu-latest
     container: golang
@@ -69,6 +70,7 @@ jobs:
         with:
           name: ${{ matrix.target_dir }}
           path: localstack/sqs_admin/bin/${{ matrix.target_dir }}/
+          retention-days: 1
 
   package:
     runs-on: ubuntu-latest
@@ -96,12 +98,16 @@ jobs:
 
       - name: Build Python package
         working-directory: localstack
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           make install
-          make dist
+          make publish
 
       - name: Upload package artifact
         uses: actions/upload-artifact@v4
         with:
           name: extension
           path: localstack/dist
+          retention-days: 5

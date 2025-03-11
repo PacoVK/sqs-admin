@@ -24,7 +24,7 @@ dist: venv
 	$(VENV_RUN); python -m build
 
 publish: clean-dist venv dist
-	$(VENV_RUN); pip install --upgrade twine; twine upload dist/*
+	$(VENV_RUN); pip install --upgrade twine; twine upload --repository testpypi dist/*
 
 clean-dist: clean
 	rm -rf dist/
