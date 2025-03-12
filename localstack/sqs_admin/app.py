@@ -22,9 +22,10 @@ class App:
     @route("/<path:anything>")
     def assets(self, request: Request, anything):
         LOG.debug("Try to access %s", request.base_url)
+        url = request.url.replace(" _extension/sqs-admin/", "")
         response = requests.request(
             request.method,
-            request.url,
+            url,
             data=request.data,
             proxies=self.proxies
         )
