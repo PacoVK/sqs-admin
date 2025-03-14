@@ -17,6 +17,15 @@ Alternatively, you can install the extension via the CLI directly from this repo
 localstack extensions install "git+https://github.com/pacovk/sqs-admin/#egg=sqs-admin"
 ```
 
+### Configure
+
+You can configure the extension by setting SQS-Admin environment variables:
+
+Example:
+```bash
+localstack start -e SQS_AWS_REGION=us-east-2
+```
+
 ### Use the extension
 
 Navigate to http://sqs-admin.localhost.localstack.cloud:4566.
