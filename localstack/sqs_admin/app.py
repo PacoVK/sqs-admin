@@ -11,8 +11,9 @@ class App:
 
     @route("/")
     def index(self, request: Request):
+        url = request.base_url.replace("_extension/sqs-admin/","")
         response = requests.get(
-            request.url,
+            url,
             proxies=self.proxies
         )
         res = Response(response)
@@ -22,7 +23,7 @@ class App:
     @route("/<path:anything>")
     def assets(self, request: Request, anything):
         LOG.debug("Try to access %s", request.base_url)
-        url = request.url.replace(" _extension/sqs-admin/", "")
+        url = request.base_url.replace("_extension/sqs-admin/","")
         response = requests.request(
             request.method,
             url,

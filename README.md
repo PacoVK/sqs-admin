@@ -79,6 +79,14 @@ To run the tests you can run `make test`. You'll need to shut down your local de
 
 To shutdown your local development environment you can run `make down`.
 
+### Release
+
+To release a new version: 
+* Update `vite.config.ts` 
+* Update `package.json`
+* Update `./localstack/pyproject.toml`
+* Create a new release on GitHub
+
 ## Designed and tested with
 
 ![Localstack](https://raw.githubusercontent.com/localstack/.github/main/assets/localstack-readme-banner.svg)
