@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools", 'wheel', 'plux>=1.3.1']
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[project]
+name = "sqs-admin"
+version = "0.8.0"
+description = "LocalStack Extension: SQS-Admin"
+readme = {file = "README.md", content-type = "text/markdown; charset=UTF-8"}
+requires-python = ">=3.8"
+license = {text = "Apache-2.0"}
+authors = [
+    { name = "Pascal Euhus", email = "pascal.euhus@gmx.de" }
+]
+keywords = ["localstack", "localstack-extension", "extension"]
+classifiers = []
+dependencies = [
+    "botocore",
+    "rolo",
+    "boto3",
+    "jsonpatch",
+    "cookiecutter"
+]
+
+[project.urls]
+Homepage = "https://github.com/pacovk/sqs-admin"
+
+[project.optional-dependencies]
+dev = [
+    "localstack>=0.0.0.dev"
+]
+
+[project.entry-points."localstack.extensions"]
+sqs-admin = "sqs_admin.extension:SqsAdmin"

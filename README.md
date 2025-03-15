@@ -9,6 +9,8 @@
   </a>
 </p>
 
+[![Install LocalStack Extension](https://cdn.localstack.cloud/gh/extension-badge.svg)](https://app.localstack.cloud/extensions/remote?url=git+https://github.com/PacoVK/sqs-admin/#egg=sqs-admin)
+
 A minimal and lightweight UI for managing SQS-Queues for local development e.g. with [Localstack](https://localstack.cloud/).
 
 ![Sqs-Admin](screenshot.png)
@@ -22,12 +24,20 @@ provided by Localstack, unfortunately without UI.
 
 ## Usage
 
+### Standalone Mode
+
 The most common way to use SQS-Admin would be in conjunction with a `docker-compose.yml`.
 A working example can be found in the `example` directory.
 
 You probably need to have a SQS up and running somewhere to connect to, e.g. via Localstack.
 To start SQS-Admin simply run:
 `docker run --rm -p 3999:3999 -e SQS_ENDPOINT_URL=<Endpoint-URL-of-our-SQS> -d pacovk/sqs-admin`
+
+### LocalStack Extension
+
+SQS-Admin can also be used as a LocalStack extension, which provides a more integrated experience.
+
+More details [here](./localstack/README.md).
 
 ## Compatibility
 
@@ -68,6 +78,14 @@ To run the tests you can run `make test`. You'll need to shut down your local de
 ### Shutdown local environment
 
 To shutdown your local development environment you can run `make down`.
+
+### Release
+
+To release a new version: 
+* Update `vite.config.ts` 
+* Update `package.json`
+* Update `./localstack/pyproject.toml`
+* Create a new release on GitHub
 
 ## Designed and tested with
 

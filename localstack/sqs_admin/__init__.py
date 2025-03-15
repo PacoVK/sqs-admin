@@ -1,0 +1,1 @@
+name = "sqs_admin"

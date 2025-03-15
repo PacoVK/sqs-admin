@@ -1,0 +1,2 @@
+recursive-include sqs_admin/bin *
+include README.md
