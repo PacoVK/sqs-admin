@@ -2,8 +2,6 @@ name: Localstack extension
 
 on:
   push:
-    branches:
-      - main
     tags:
       - "v*.*.*"
 
