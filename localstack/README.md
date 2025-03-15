@@ -1,7 +1,7 @@
 SQS-Admin
 ===============================
 
-[![Install LocalStack Extension](https://cdn.localstack.cloud/gh/extension-badge.svg)](https://app.localstack.cloud/extensions/remote?url=git+https://github.com/PacoVK/sqs-admin/#egg=sqs-admin)
+![Install LocalStack Extension](https://cdn.localstack.cloud/gh/extension-badge.svg)
 
 The LocalStack SQS-Admin extension is a simple, yet powerful UI to manage and interact with your SQS queues in LocalStack. 
 
@@ -9,12 +9,35 @@ The LocalStack SQS-Admin extension is a simple, yet powerful UI to manage and in
 
 ### Install
 
-Start LocalStack and click the LocalStack Extension badge on the top of the README.
-
-Alternatively, you can install the extension via the CLI directly from this repository:
+You can install the extension via the CLI
 
 ```bash
-localstack extensions install "git+https://github.com/pacovk/sqs-admin/#egg=sqs-admin"
+localstack extensions install sqs-admin
+```
+
+or add `sqs-admin` to the `EXTENSION_AUTO_INSTALL` environment variable.
+
+Example:
+
+```bash
+localstack start -e EXTENSION_AUTO_INSTALL=sqs-admin
+```
+
+or via Docker compose by adding `EXTENSION_AUTO_INSTALL=sqs-admin` to the environment variables of the `localstack` service.
+
+Example Docker compose:
+
+```yaml
+services:
+  localstack:
+    container_name: "localstack-main"
+    image: localstack/localstack-pro
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+      - EXTENSION_AUTO_INSTALL=sqs-admin
 ```
 
 ### Configure
@@ -22,6 +45,7 @@ localstack extensions install "git+https://github.com/pacovk/sqs-admin/#egg=sqs-
 You can configure the extension by setting SQS-Admin environment variables:
 
 Example:
+  
 ```bash
 localstack start -e SQS_AWS_REGION=us-east-2
 ```
