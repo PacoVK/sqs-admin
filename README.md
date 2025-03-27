@@ -1,4 +1,6 @@
-# SQS-Admin
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/11fe5716-16c6-46e5-b64f-a992c2ba0773" />
+</p>
 
 <p>  
   <a href="https://github.com/PacoVK/sqs-admin?tab=readme-ov-file#contributors-">
@@ -7,9 +9,10 @@
   <a href="https://hub.docker.com/r/pacovk/sqs-admin">
     <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/pacovk/sqs-admin">
   </a>
+  <a href="https://cdn.localstack.cloud/gh/extension-badge.svg">
+    <img alt="Localstack extension" src="https://cdn.localstack.cloud/gh/extension-badge.svg">
+  </a>
 </p>
-
-![Install LocalStack Extension](https://cdn.localstack.cloud/gh/extension-badge.svg)
 
 A minimal and lightweight UI for managing SQS-Queues for local development e.g. with [Localstack](https://localstack.cloud/).
 
