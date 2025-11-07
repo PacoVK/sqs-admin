@@ -58,15 +58,82 @@ jobs:
 
   pages:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install markdown-to-html converter
+        run: npm install -g marked
+
       - name: Prepare GitHub Pages content
         run: |
           mkdir -p dist
-          cp README.md dist/index.html
+          cat > dist/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>SQS Admin</title>
+            <style>
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+                line-height: 1.6;
+                color: #24292e;
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 20px;
+              }
+              img {
+                max-width: 100%;
+                height: auto;
+              }
+              a {
+                color: #0366d6;
+                text-decoration: none;
+              }
+              a:hover {
+                text-decoration: underline;
+              }
+              code {
+                background-color: #f6f8fa;
+                border-radius: 3px;
+                padding: 2px 6px;
+                font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+                font-size: 85%;
+              }
+              pre {
+                background-color: #f6f8fa;
+                border-radius: 3px;
+                padding: 16px;
+                overflow: auto;
+              }
+              table {
+                border-collapse: collapse;
+                width: 100%;
+              }
+              table th, table td {
+                border: 1px solid #dfe2e5;
+                padding: 6px 13px;
+              }
+              table tr:nth-child(2n) {
+                background-color: #f6f8fa;
+              }
+            </style>
+          </head>
+          <body>
+          EOF
+          marked README.md >> dist/index.html
+          cat >> dist/index.html << 'EOF'
+          </body>
+          </html>
+          EOF
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -82,7 +149,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: pages
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
