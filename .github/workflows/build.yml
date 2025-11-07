@@ -15,10 +15,6 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -59,6 +55,9 @@ jobs:
   pages:
     runs-on: ubuntu-latest
     if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -67,9 +66,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-
-      - name: Install markdown-to-html converter
-        run: npm install -g marked
 
       - name: Prepare GitHub Pages content
         run: |
@@ -129,7 +125,7 @@ jobs:
           </head>
           <body>
           EOF
-          marked README.md >> dist/index.html
+          npx marked@12.0.0 README.md >> dist/index.html
           cat >> dist/index.html << 'EOF'
           </body>
           </html>
@@ -150,6 +146,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: pages
     if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
+    concurrency:
+      group: "pages-deploy"
+      cancel-in-progress: false
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
