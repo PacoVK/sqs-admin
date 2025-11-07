@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   root: ".",
   publicDir: "public",
-  base: "./",
+  base: process.env.GITHUB_PAGES === "true" ? "/sqs-admin/" : "./",
   build: {
     outDir: "dist",
     emptyOutDir: true,
