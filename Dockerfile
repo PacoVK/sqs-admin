@@ -1,5 +1,5 @@
 # Build frontend assets
-FROM node:22-alpine AS react_builder
+FROM node:24-alpine AS react_builder
 WORKDIR /app
 COPY . .
 RUN corepack enable && yarn install --frozen-lockfile
