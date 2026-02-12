@@ -11,8 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.4.4",
-    "@mui/material": "^6.4.4",
+    "@mui/icons-material": "^7.0.0",
+    "@mui/material": "^7.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-json-tree": "^0.20.0"
