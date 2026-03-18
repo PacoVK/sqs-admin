@@ -29,7 +29,6 @@ import Box from "@mui/material/Box";
 
 const a11yProps = (id: string, index: number) => {
   return {
-    key: index,
     "aria-controls": `queue-${id}-${index}`,
   };
 };
@@ -229,6 +228,7 @@ const Overview = () => {
           <List>
             {queues?.map((queue, index) => (
               <ListItem
+                key={index}
                 {...a11yProps("item", index)}
                 onClick={selectQueue}
                 value={index}
@@ -283,15 +283,17 @@ const Overview = () => {
         <Grid size={{ xs: 12 }}>
           {queues?.map((queue, index) => (
             <TabPanel
+              key={index}
               value={listItemIndex}
               index={index}
               {...a11yProps("tabpanel", index)}
             >
               <Grid container spacing={2}>
                 {messages?.map((message, index) => (
-                  <Grid size={{ xs: 12 }} {...a11yProps("gridItem", index)}>
+                  <Grid key={index} size={{ xs: 12 }} {...a11yProps("gridItem", index)}>
                     <Paper>
                       <MessageItem
+                        key={index}
                         data={message}
                         {...a11yProps("messageItem", index)}
                       />
