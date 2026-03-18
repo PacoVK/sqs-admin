@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Alert /> spec renders the Alert 1`] = `
+exports[`<Alert /> spec renders the Alert with info severity 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>

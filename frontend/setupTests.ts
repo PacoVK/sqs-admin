@@ -11,5 +11,8 @@ export default class FixJSDOMEnvironment extends JSDOMEnvironment {
     this.global.Headers = Headers;
     this.global.Request = Request;
     this.global.Response = Response;
+
+    this.global.process.env.DEV = 'true';
+    this.global.process.env.REACT_APP_VERSION = '1.0.0-test';
   }
 }
