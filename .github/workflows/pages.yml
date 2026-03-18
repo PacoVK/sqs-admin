@@ -1,0 +1,54 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - README.md
+      - screenshot.png
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build site
+        run: |
+          mkdir _site
+          pandoc README.md \
+            --from gfm \
+            --to html5 \
+            --standalone \
+            --metadata title="SQS Admin" \
+            --css "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-light.min.css" \
+            --output _site/index.html
+          # Wrap body content in markdown-body class for github-markdown-css
+          sed -i 's/<body>/<body class="markdown-body" style="max-width:980px;margin:0 auto;padding:45px;">/' _site/index.html
+          # Copy referenced local assets
+          cp screenshot.png _site/
+          cp public/favicon.ico _site/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
