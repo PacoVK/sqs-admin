@@ -9,6 +9,7 @@ jobs:
       localstack:
         image: localstack/localstack
         env:
+          LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
           SERVICES: sqs
           EXTRA_CORS_ALLOWED_ORIGINS: "*"
     env:

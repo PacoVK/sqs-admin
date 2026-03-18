@@ -33,6 +33,9 @@ The most common way to use SQS-Admin would be in conjunction with a `docker-comp
 A working example can be found in the `example` directory.
 
 You probably need to have a SQS up and running somewhere to connect to, e.g. via Localstack.
+
+> **Note:** As of March 2026, LocalStack requires an auth token. Sign up for a free account at [localstack.cloud](https://localstack.cloud/), then copy `.env.sample` to `.env` and fill in your token before running `docker compose up`.
+
 To start SQS-Admin simply run:
 `docker run --rm -p 3999:3999 -e SQS_ENDPOINT_URL=<Endpoint-URL-of-our-SQS> -d pacovk/sqs-admin`
 
