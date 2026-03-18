@@ -30,6 +30,19 @@ describe("<SendMessageDialog /> spec", () => {
     expect(screen.getByText("Please provide a message body.")).toBeInTheDocument();
   });
 
+  it("blurs trigger button when dialog opens to avoid aria-hidden conflict", () => {
+    render(
+      <SendMessageDialog disabled={false} onSubmit={() => {}} queue={standardQueue} />,
+    );
+    const triggerButton = screen.getByRole("button", { name: "Send message" });
+    triggerButton.focus();
+    expect(document.activeElement).toBe(triggerButton);
+
+    fireEvent.click(triggerButton);
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(document.activeElement).not.toBe(triggerButton);
+  });
+
   it("submits message with body text", () => {
     const mockSubmit = jest.fn();
     render(
