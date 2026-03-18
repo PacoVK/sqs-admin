@@ -77,6 +77,17 @@ describe("<CreateQueueDialog /> spec", () => {
     });
   });
 
+  it("blurs trigger button when dialog opens to avoid aria-hidden conflict", () => {
+    render(<CreateQueueDialog onSubmit={() => {}} />);
+    const triggerButton = screen.getByRole("button", { name: "Create Queue" });
+    triggerButton.focus();
+    expect(document.activeElement).toBe(triggerButton);
+
+    fireEvent.click(triggerButton);
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(document.activeElement).not.toBe(triggerButton);
+  });
+
   it("resets queue name on submit", () => {
     const mockSubmit = jest.fn();
     render(<CreateQueueDialog onSubmit={mockSubmit} />);

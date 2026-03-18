@@ -19,6 +19,12 @@ const CreateQueueDialog = (props: CreateQueueDialogProps) => {
   const [isFifoQueue, enableFifoQueue] = useState(false);
 
   const handleClickOpen = () => {
+    // Blur trigger button before opening dialog to prevent aria-hidden
+    // warning — MUI's Modal sets aria-hidden on #root before focus
+    // transfers into the dialog.
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     setQueueName("");
     enableFifoQueue(false);
     setOpen(true);

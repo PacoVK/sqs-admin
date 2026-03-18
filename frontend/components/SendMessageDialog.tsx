@@ -27,6 +27,12 @@ const SendMessageDialog = (props: SendMessageDialogProps) => {
   const [attributeValue, setAttributeValue] = useState("");
 
   const handleClickOpen = () => {
+    // Blur trigger button before opening dialog to prevent aria-hidden
+    // warning — MUI's Modal sets aria-hidden on #root before focus
+    // transfers into the dialog.
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     setMessageBody("");
     setOpen(true);
     setMessageGroupId("");
