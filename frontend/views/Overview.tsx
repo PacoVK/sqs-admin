@@ -7,7 +7,7 @@ import {
   Container,
   Divider,
   Drawer,
-  Grid2 as Grid,
+  Grid,
   List,
   ListItem,
   ListItemButton,

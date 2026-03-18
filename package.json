@@ -10,11 +10,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.4.4",
-    "@mui/material": "^6.4.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-json-tree": "^0.20.0"
   },
   "scripts": {
@@ -22,12 +22,6 @@
     "build": "vite build",
     "prettier": "prettier --write .",
     "test": "jest"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -42,22 +36,21 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.13.4",
-    "@types/react": "^19.0.9",
-    "@types/react-dom": "^19.0.3",
-    "@vitejs/plugin-react": "^5.0.0",
-    "jest": "^30.0.0",
-    "jest-environment-jsdom": "^30.0.0",
-    "prettier": "^3.5.1",
-    "react-scripts": "^5.0.1",
-    "ts-jest": "^29.2.5",
-    "typescript": "^5.7.3",
-    "vite": "^7.0.0"
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
+    "prettier": "^3.8.1",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.0"
   },
   "packageManager": "yarn@4.12.0"
 }

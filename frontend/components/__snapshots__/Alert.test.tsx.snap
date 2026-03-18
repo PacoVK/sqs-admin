@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`<Alert /> spec renders the Alert with info severity 1`] = `
 {
@@ -46,7 +46,6 @@ exports[`<Alert /> spec renders the Alert with info severity 1`] = `
                 <button
                   aria-label="close"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-38cjb0-MuiButtonBase-root-MuiIconButton-root"
-                  id=":r0:"
                   tabindex="0"
                   type="button"
                 >
@@ -111,7 +110,6 @@ exports[`<Alert /> spec renders the Alert with info severity 1`] = `
               <button
                 aria-label="close"
                 class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-38cjb0-MuiButtonBase-root-MuiIconButton-root"
-                id=":r0:"
                 tabindex="0"
                 type="button"
               >

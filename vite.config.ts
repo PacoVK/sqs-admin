@@ -11,7 +11,7 @@ export default defineConfig({
   build: {
     outDir: "dist",
     emptyOutDir: true,
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
       },
@@ -21,9 +21,17 @@ export default defineConfig({
         chunkFileNames: "assets/[name].[hash].js",
         assetFileNames: "assets/[name].[hash].[ext]",
         // 3. Optimize build splitting for better performance
-        manualChunks: {
-          vendor: ["react", "react-dom", "@emotion/react", "@emotion/styled"],
-          mui: ["@mui/material", "@mui/icons-material"],
+        manualChunks(id) {
+          if (
+            id.includes("node_modules/react/") ||
+            id.includes("node_modules/react-dom/") ||
+            id.includes("node_modules/@emotion/")
+          ) {
+            return "vendor";
+          }
+          if (id.includes("node_modules/@mui/")) {
+            return "mui";
+          }
         },
       },
     },
