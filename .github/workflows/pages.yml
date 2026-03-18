@@ -30,6 +30,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Install pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
       - name: Build site
         run: |
           mkdir _site
