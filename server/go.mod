@@ -2,7 +2,7 @@ module github.com/pacoVK
 
 go 1.24
 
-toolchain go1.26.1
+toolchain go1.26.2
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.41.5
