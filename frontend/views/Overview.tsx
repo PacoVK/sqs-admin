@@ -26,6 +26,11 @@ import { callApi } from "../api/Http";
 import MessageItem from "../components/MessageItem";
 import QueueIcon from "@mui/icons-material/CalendarViewWeek";
 import Box from "@mui/material/Box";
+import SidebarResizeHandle from "../components/SidebarResizeHandle";
+import useResizableSidebar, {
+  SIDEBAR_CONTAINER,
+  SIDEBAR_WIDTH_VAR,
+} from "../hooks/useResizableSidebar";
 
 const a11yProps = (id: string, index: number) => {
   return {
@@ -41,6 +46,12 @@ const Overview = () => {
   const [error, setError] = useState("");
   const [disabledStatus, setDisabledStatus] = useState(true);
   const [region, setRegion] = useState({ region: "" } as AwsRegion);
+  const {
+    width: sidebarWidth,
+    resizing,
+    containerRef,
+    separatorProps,
+  } = useResizableSidebar();
 
   useInterval(async () => {
     await receiveMessageFromCurrentQueue();
@@ -166,22 +177,27 @@ const Overview = () => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      ref={containerRef}
+      sx={{ display: "flex", [SIDEBAR_WIDTH_VAR]: `${sidebarWidth}px` }}
+    >
       <Box>
         <Drawer
           sx={{
-            width: 402,
+            width: `var(${SIDEBAR_WIDTH_VAR})`,
             flexShrink: 0,
             "& .MuiDrawer-paper": {
-              width: 402,
+              width: `var(${SIDEBAR_WIDTH_VAR})`,
               boxSizing: "border-box",
+              containerType: "inline-size",
+              containerName: SIDEBAR_CONTAINER,
             },
           }}
           variant="permanent"
           anchor="left"
         >
           <List>
-            <ListItem>
+            <ListItem sx={{ flexWrap: "wrap", columnGap: 1 }}>
               <Typography variant="h6" margin={"auto"}>
                 SQS Admin UI
               </Typography>
@@ -198,6 +214,11 @@ const Overview = () => {
                   gap: 1,
                   display: "grid",
                   gridTemplateColumns: "repeat(2, 1fr)",
+                  [`@container ${SIDEBAR_CONTAINER} (max-width: 340px)`]: {
+                    gridTemplateColumns: "1fr",
+                    paddingLeft: 1,
+                    paddingRight: 1,
+                  },
                 }}
               >
                 <CreateQueueDialog onSubmit={createNewQueue} />
@@ -253,7 +274,8 @@ const Overview = () => {
           </List>
         </Drawer>
       </Box>
-      <Box sx={{ flexGrow: 1 }}>
+      <SidebarResizeHandle resizing={resizing} {...separatorProps} />
+      <Box sx={{ flexGrow: 1, minWidth: 0 }}>
         <Grid size={{ xs: 12 }}>
           <Toolbar>
             <Typography variant="h6" margin={"auto"}>
@@ -290,7 +312,11 @@ const Overview = () => {
             >
               <Grid container spacing={2}>
                 {messages?.map((message, index) => (
-                  <Grid key={index} size={{ xs: 12 }} {...a11yProps("gridItem", index)}>
+                  <Grid
+                    key={index}
+                    size={{ xs: 12 }}
+                    {...a11yProps("gridItem", index)}
+                  >
                     <Paper>
                       <MessageItem
                         key={index}
